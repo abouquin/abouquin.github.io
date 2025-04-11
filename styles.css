@@ -1,9 +1,5 @@
 /* Reset styles */
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Square&display=swap');
-
-
-
 
 /* Default font for English page */
 * {
@@ -17,7 +13,8 @@
 
 /* Apply Square font for all elements on Japanese pages */
 html[lang="ja"] * {
-    font-family: 'Square', sans-serif; /* Japanese font */
+    font-family: 'Square', sans-serif;
+    /* Japanese font */
 }
 
 /* Background & Canvas */
@@ -114,7 +111,6 @@ header p {
 section {
     max-width: 100%;
     overflow-wrap: break-word;
-    min-height: auto;
     padding: 50px 20px;
     text-align: center;
     border-radius: 10px;
@@ -126,6 +122,11 @@ section {
     margin: 20px 0;
     position: relative;
     z-index: 2;
+    display: flex;
+    flex-direction: column; /* Align items vertically */
+    justify-content: center; /* Center content vertically */
+    align-items: center; /* Center content horizontally */
+    min-height: 200px; /* Ensures section has a minimum height */
 }
 
 ul {
@@ -230,6 +231,21 @@ button:hover {
     }
 }
 
+section>.start-button {
+    background: transparent;
+    border: 2px solid cyan;
+    padding: 10px 20px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: 0.3s;
+    box-sizing: border-box;
+    /* Ensure padding and border are included in the total size */
+    margin-top: 20px;
+    /* Adjust this if needed */
+}
+
 h1:hover,
 h2:hover {
     animation: glitchText 0.2s infinite;
@@ -270,7 +286,8 @@ h2:hover {
     top: 10px;
     right: 15px;
     padding: 8px 12px;
-    background-color: #0ff; /* Cyberpunk cyan */
+    background-color: #0ff;
+    /* Cyberpunk cyan */
     color: #000;
     text-decoration: none;
     font-weight: bold;
@@ -279,6 +296,7 @@ h2:hover {
 }
 
 .lang-button:hover {
-    background-color: #f0f; /* Cyberpunk magenta */
+    background-color: #f0f;
+    /* Cyberpunk magenta */
     color: #fff;
 }
