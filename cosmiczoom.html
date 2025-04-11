@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Test Video Scrubbing</title>
+    <link rel="stylesheet" href="cosmiczoom.css"> <!-- Keeping your custom CSS -->
+</head>
+
+<body>
+
+    <video id="zoomVideo" playsinline muted preload="auto">
+        <source id="videoSource" src="videos/mitaka480p_keyframes.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <div class="label">scroll down</div>
+
+    <div class="content">
+        <div class="scroll-section padded">
+            <div id="first" class="square">
+                <p class="text">This is Earth — our home planet.</p>
+            </div>
+        </div>
+        <div class="scroll-section padded">
+            <div id="scale" class="square">
+                <p class="text">For scale - each square is 10× larger than the last.<br />The one almost enclosing the Earth is 10,000km wide.</p>
+            </div>
+        </div>
+        <div class="scroll-section padded">
+            <div id="second" class="square">
+                <p class="text">The Moon — Earth's only natural satellite.</p>
+            </div>
+        </div>
+        <div class="scroll-section padded">
+            <div id="third" class="square">
+                <p class="text">The Solar System — a family of planets orbiting the Sun.</p>
+            </div>
+        </div>
+        <div class="scroll-section padded">
+            <div id="oort" class="square">
+                <p class="text">The Oort Cloud - A distant shell of icy bodies,<br />source of long-period comets.</p>
+            </div>
+        </div>
+        <div class="scroll-section padded">
+            <div id="fourth" class="square">
+                <p class="text">The nearest stars, mapped by ESA’s Hipparcos mission.</p>
+            </div>
+        </div>
+        <div class="scroll-section padded">
+            <div id="fifth" class="square">
+                <p class="text">The Milky Way — our spiral galaxy<br />with hundreds of billions of stars.</p>
+            </div>
+        </div>
+        <div class="scroll-section padded">
+            <div id="sixth" class="square">
+                <p class="text">and the Local Group —<br />a cluster of about 100 galaxies, including ours.</p>
+            </div>
+        </div>
+        <div class="scroll-section padded">
+            <div id="seventh" class="square">
+                <p class="text">Distant galaxies mapped by the Sloan Digital Sky Survey.<br />The Zone of Avoidance hides what lies behind<br />the Milky Way’s plane.</p>
+            </div>
+        </div>
+        <div class="scroll-section padded">
+            <div id="last" class="square">
+                <p class="text">The Cosmic Microwave Background —<br />the oldest light we can observe.<br />The edge of the observable universe.</p>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="./cosmiczoom.js"></script>
+</body>
+
+</html>

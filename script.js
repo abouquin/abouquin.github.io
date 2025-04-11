@@ -170,10 +170,10 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    const gameButton = document.querySelector(".game-button");
-    if (gameButton) {
-        gameButton.addEventListener("click", function () {
-            window.location.href = "game.html";
+    const startButton = document.querySelector(".start-button");
+    if (startButton) {
+        startButton.addEventListener("click", function () {
+            window.location.href = "cosmiczoom.html";
         });
     }
 });
