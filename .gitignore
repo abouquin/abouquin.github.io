@@ -1,2 +1,8 @@
 *.afdesign
 .DS_Store
+./videos/mitaka_raw.mov
+./videos/mitaka720p.mov
+./videos/mitaka720p_trimmed.mov
+./videos/mitaka720p_keyframes.mp4
+./videos/mitaka480p.mp4
+./videos/mitaka480p.mov

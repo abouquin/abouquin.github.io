@@ -1,0 +1,55 @@
+body,
+html {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background-color: yellow;
+  color: #333;
+  /* height: 100vh; */
+}
+
+/* This defines the area (height) of the scrollable container */
+.scroll-container {
+  height: 100vh;
+}
+
+.scroll-y {
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+/* This defines the total height of the scrollable content */
+.scroll-content {
+  height: 5000px;
+  /* overflow-y: scroll; */
+}
+
+/* This defines the interval between each section */
+.scroll-section {
+  height: 90vh;
+}
+
+.padded {
+  padding: 20px;
+}
+
+.square {
+  height: 50px;
+  width: 200px;
+  border-radius: 0%;
+  background-color: red;
+  opacity: 0;
+}
+
+.text {
+  font-size: 24px;
+  color: white;
+  margin: 20px 0;
+}
+
+.circle {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  background-color: blue;
+}
