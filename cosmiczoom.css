@@ -147,7 +147,8 @@ h1 {
 
 .counter {
     border-radius: 0%;
-    background-color: green;
+    background-color: transparent;
+    color: green;
     opacity: 1;
     position: fixed;
     bottom: 5%;
