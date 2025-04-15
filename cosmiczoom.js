@@ -135,7 +135,7 @@ elements.forEach(({ id, start, end }) => {
         easing: 'linear',
         loop: false,
         alternate: true,
-        background: '#0000ff',
+        background: '#ff8800',
         autoplay: onScroll({
             window,
             enter: `bottom-=${BThreshold} top+=${newStart}`,
