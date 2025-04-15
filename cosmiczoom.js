@@ -110,8 +110,8 @@ const elements = [
     { id: '#fourth', start: 2500, end: 3000 },
     { id: '#fifth', start: 3200, end: 3400 },
     { id: '#sixth', start: 3500, end: 3800 },
-    { id: '#seventh', start: 4000, end: 4300 },
-    { id: '#last', start: 4300, end: 4663 },
+    { id: '#seventh', start: 4000, end: 4200 },
+    { id: '#last', start: 4200, end: 4663 },
 ];
 
 const debug = false;
