@@ -336,13 +336,21 @@ h2:hover {
 /* Responsive font size for small screens */
 @media (max-width: 600px) {
     table {
-      width: 100%;
-      border-collapse: collapse;
-      table-layout: fixed;
-      overflow: hidden;
-      }
-  
-    th, td {
-      font-size: 10px;  /* Adjust font size for smaller screens */
+        width: 100%;
+        border-collapse: collapse;
+        table-layout: fixed;
+        overflow: hidden;
     }
-  }
+
+    th,
+    td {
+        font-size: 10px;
+        /* Adjust font size for smaller screens */
+    }
+}
+
+/* Resarch Page */
+.leftjustify {
+    text-align: left;
+    padding: 20px;
+}
