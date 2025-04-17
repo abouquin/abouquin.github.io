@@ -107,6 +107,22 @@ header p {
     opacity: 0.8;
 }
 
+.footer {
+    text-align: center;
+    padding: 1.5rem;
+    font-size: 0.9rem;
+    color: #999;
+  }
+  
+  .footer a {
+    color: yellow;
+    text-decoration: none;
+  }
+  
+  .footer a:hover {
+    text-decoration: underline;
+  }
+
 /* Base Section Styling */
 section {
     width: 100%;
