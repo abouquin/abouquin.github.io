@@ -1,6 +1,6 @@
 {
-    "name": "Your Site Name",
-    "short_name": "Site",
+    "name": "AYKB Page",
+    "short_name": "AYKB",
     "icons": [
       {
         "src": "/icons/icon-192x192.png",
@@ -18,8 +18,5 @@
     "start_url": "/",
     "display": "standalone",
     "background_color": "#ffffff",
-    "theme_color": "#ffffff",
-    "name": "AYKB Page",
-    "short_name": "AYKB",
-    "description": "AYKB Page",
+    "theme_color": "#ffffff"
   }
