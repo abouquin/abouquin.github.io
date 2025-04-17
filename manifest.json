@@ -18,5 +18,8 @@
     "start_url": "/",
     "display": "standalone",
     "background_color": "#ffffff",
-    "theme_color": "#ffffff"
+    "theme_color": "#ffffff",
+    "name": "AYKB Page",
+    "short_name": "AYKB",
+    "description": "AYKB Page",
   }
