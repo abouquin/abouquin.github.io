@@ -109,24 +109,21 @@ header p {
 
 /* Base Section Styling */
 section {
-    max-width: 100%;
-    overflow-wrap: break-word;
+    width: 100%;
     padding: 50px 20px;
+    margin: 40px 0;
     text-align: center;
+
     border-radius: 10px;
+    border: 2px solid rgba(0, 255, 255, 0.5);
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.2);
     backdrop-filter: blur(10px);
+
     background-size: 400% 400%;
     animation: gradientBG 8s ease infinite;
-    border: 2px solid rgba(0, 255, 255, 0.5);
-    box-shadow: 0px 0px 20px rgba(0, 255, 255, 0.2);
-    margin: 20px 0;
-    position: relative;
-    z-index: 2;
-    display: flex;
-    flex-direction: column; /* Align items vertically */
-    justify-content: center; /* Center content vertically */
-    align-items: center; /* Center content horizontally */
-    min-height: 200px; /* Ensures section has a minimum height */
+
+    background-color: rgba(0, 0, 0, 0.6);
+    /* if needed for contrast */
 }
 
 ul {
@@ -300,3 +297,52 @@ h2:hover {
     /* Cyberpunk magenta */
     color: #fff;
 }
+
+/* About Page */
+.table-section {
+    display: block;
+    /* Override flex just for this section */
+    overflow: visible;
+    padding-bottom: 60px;
+    /* Add some space below the table */
+    position: relative;
+    /* Keep your border/shadow layering */
+    z-index: 2;
+    /* Maintain existing stacking */
+    max-height: none;
+    height: auto;
+}
+
+.table-container {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+    overflow-y: visible;
+}
+
+.table-container table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+}
+
+.table-container th,
+.table-container td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Responsive font size for small screens */
+@media (max-width: 600px) {
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      table-layout: fixed;
+      overflow: hidden;
+      }
+  
+    th, td {
+      font-size: 10px;  /* Adjust font size for smaller screens */
+    }
+  }
