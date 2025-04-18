@@ -10,6 +10,7 @@ import {
 console.log(document.querySelector('.svg-grid-bg'));
 
 animate('.svg-grid-bg', {
+    // translateX: [-30, 30],
     translateY: [-10, 10],
     opacity: [0, 0.2],
     duration: 4000,
