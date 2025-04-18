@@ -184,6 +184,6 @@ const navLinks = document.getElementById('nav-links');
 const navbar = document.querySelector('.navbar');
 
 hamburger.addEventListener('click', () => {
-  navLinks.classList.toggle('show');
-  navbar.classList.toggle('show-bg');
+    navLinks.classList.toggle('show');
+    navbar.classList.toggle('show-bg');
 });

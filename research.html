@@ -22,6 +22,18 @@
 
 <body>
     <canvas id="bg"></canvas>
+    <div class="scanlines"></div>
+    <div class="svg-grid-bg">
+        <svg viewBox="0 0 100 100" preserveAspectRatio="none">
+            <rect width="100%" height="100%" fill="url(#grid)" />
+            <defs>
+                <pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse">
+                    <path d="M 10 0 L 0 0 0 10" stroke="red" stroke-width="0.5" fill="none" />
+                </pattern>
+            </defs>
+        </svg>
+    </div>
+
     <header>
         <h1>Research & Publications</h1>
         <p>Explore my work in galaxy evolution and star formation.</p>
@@ -40,7 +52,54 @@
         </div>
     </nav>
     <section>
-        <h2>Recent Publications</h2>
+        <h2>For Researchers</h2>
+        <br /><br />
+        <ul>
+            <li>BH masses and bulge+disk UV-3.6um color relations : 
+                <br />J/ApJ/898/83<br />
+                Dullo, B. T. ; Bouquin, A. Y. K. ; Gil de, Paz A. ; Knapen, J. H. ; Gorgas, J.
+                <br />(
+                <a href="https://ui.adsabs.harvard.edu/abs/2021yCat..18980083D/abstract" target="_blank">ADS abstract</a>,
+                <a href="https://cdsarc.cds.unistra.fr/viz-bin/cat/J/ApJ/898/83" target="_blank">VizieR Online Data Catalog</a>,
+                <a href="https://ui.adsabs.harvard.edu/abs/2020ApJ...898...83D/abstract" target="_blank">associated paper</a>
+                )
+                <br /><br />
+            </li>
+            <li>Halpha images of stellar bars in galaxies : 
+                <br />J/A+A/644/A38<br />
+                Diaz-Garcia, S. ; Moyano, F. D. ; Comeron, S. ; Knapen, J. H. ; Salo, H. ; Bouquin, A. Y. K. 
+                <br />(
+                <a href="https://ui.adsabs.harvard.edu/abs/2020yCat..36440038D/abstract" target="_blank">ADS abstract</a>,
+                <a href="https://cdsarc.cds.unistra.fr/viz-bin/cat/J/A+A/644/A38" target="_blank">VizieR Online Data Catalog</a>,
+                <a href="https://ui.adsabs.harvard.edu/abs/2020A%26A...644A..38D/abstract" target="_blank">associated paper</a>
+                )
+                <br /><br />
+            </li>
+            <li>GALEX/S4G surface brightness profiles. I. : 
+                <br />J/ApJS/234/18<br />
+                Bouquin, A. Y. K. ; Gil de, Paz A. ; Munoz-Mateos, J. C. ; Boissier, S. ; Sheth, K. ; Zaritsky, D. ; Peletier, R. F. ; Knapen, J. H. ; Gallego, J. 
+                <br />(
+                <a href="https://ui.adsabs.harvard.edu/abs/2018yCat..22340018B/abstract" target="_blank">ADS abstract</a>,
+                <a href="https://cdsarc.cds.unistra.fr/viz-bin/cat/J/ApJS/234/18" target="_blank">VizieR Online Data Catalog</a>,
+                <a href="https://ui.adsabs.harvard.edu/abs/2018ApJS..234...18B/abstract" target="_blank">associated paper</a>
+                )
+                <br /><br />
+            </li>
+            <li>FUV and NUV magnitudes of ETG : 
+                <br />J/MNRAS/446/2030<br />
+                Zaritsky, D. ; Gil de Paz, A. ; Bouquin, A. Y. K. 
+                <br />(
+                <a href="https://ui.adsabs.harvard.edu/abs/2015yCat..74462030Z/abstract" target="_blank">ADS abstract</a>,
+                <a href="https://cdsarc.cds.unistra.fr/viz-bin/cat/J/MNRAS/446/2030" target="_blank">VizieR Online Data Catalog</a>,
+                <a href="https://ui.adsabs.harvard.edu/abs/2015MNRAS.446.2030Z/abstract" target="_blank">associated paper</a>
+                )
+                <br /><br />
+            </li>
+        </ul>
+    </section>
+    <section>
+        <h2>Publications</h2>
+        <br /><br />
         <p>List of my latest research papers and findings.</p>
         <a href="https://ui.adsabs.harvard.edu/search/filter_author_facet_hier_fq_author=NOT&filter_author_facet_hier_fq_author=*%3A*&filter_author_facet_hier_fq_author=author_facet_hier%3A%221%2FBouquin%2C%20A%2FBouquin%2C%20A%20%20L%22&fq=%7B!type%3Daqp%20v%3D%24fq_database%7D&fq=%7B!type%3Daqp%20v%3D%24fq_author%7D&fq_author=(*%3A*%20NOT%20author_facet_hier%3A%221%2FBouquin%2C%20A%2FBouquin%2C%20A%20%20L%22)&fq_database=(database%3Aastronomy%20OR%20database%3Aphysics)&q=%20author%3A%22Bouquin%2C%20Alexandre%22&sort=date%20desc%2C%20bibcode%20desc&p_=0"
             target="_blank">
@@ -49,6 +108,7 @@
 
     <section>
         <h2>Research Interests</h2>
+        <br /><br />
         <p class="leftjustify">My research centers on the spatial distribution and evolution of star formation in nearby
             galaxies, with a particular focus on ultraviolet (UV) emission as a tracer of recent star-forming activity.
             I use multi-wavelength imaging—primarily from GALEX and the Spitzer Survey of Stellar Structure in Galaxies
@@ -74,7 +134,7 @@
             <a href="https://github.com/abouquin" target="_blank">GitHub</a>
         </p>
     </footer>
-
+    <script type="module" src="./scriptanime.js"></script>
 </body>
 
 </html>
