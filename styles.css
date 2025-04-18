@@ -112,16 +112,115 @@ header p {
     padding: 1.5rem;
     font-size: 0.9rem;
     color: #999;
-  }
-  
-  .footer a {
+}
+
+.footer a {
     color: yellow;
     text-decoration: none;
-  }
-  
-  .footer a:hover {
+}
+
+.footer a:hover {
     text-decoration: underline;
-  }
+}
+
+/* Navigation Bar */
+.navbar {
+    background-color: transparent;
+    padding: 0.5rem 1rem;
+    color: white;
+    position: fixed;
+    top: 0;
+    z-index: 1000;
+    width: 100%;
+    transition: background-color 0.3s ease;
+}
+
+.navbar.show-bg {
+    background-color: rgba(51, 51, 51, 0.95);
+    /* or any color you want */
+    backdrop-filter: blur(6px);
+    /* optional frosted effect */
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 0;
+    margin: 0;
+}
+
+/* .nav-logo {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: white;
+} */
+
+.hamburger {
+    display: none;
+    font-size: 1.5rem;
+    background: none;
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin-left: auto;
+    padding: 0.25rem;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.2s ease;
+}
+
+.nav-links a:hover {
+    color: #ffcc00;
+}
+
+.nav-links a.active {
+    color: #ffcc00;
+    border-bottom: 2px solid #ffcc00;
+}
+
+/* Mobile styles */
+@media (max-width: 768px) {
+    .navbar {
+        padding: 0.5rem 1rem; /* ensure it's tight */
+      }
+      
+    .hamburger {
+        display: block;
+        margin-left: auto;
+        padding: 0.25rem;
+    }
+
+    .nav-links {
+        display: none;
+        width: 100%;
+        flex-direction: column;
+        margin-top: 1rem;
+    }
+
+    .nav-links.show {
+        display: flex;
+    }
+
+    .nav-links li {
+        padding: 0.5rem 0;
+        text-align: center;
+    }
+}
+
 
 /* Base Section Styling */
 section {
