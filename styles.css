@@ -197,7 +197,7 @@ header p {
     .navbar {
         padding: 0.5rem 1rem; /* ensure it's tight */
       }
-      
+
     .hamburger {
         display: block;
         margin-left: auto;
@@ -324,7 +324,7 @@ button {
 
 button:hover {
     background: cyan;
-    color: black;
+    color: yellow;
     box-shadow: 0px 0px 15px cyan;
 }
 
@@ -356,6 +356,12 @@ section>.start-button {
     /* Ensure padding and border are included in the total size */
     margin-top: 20px;
     /* Adjust this if needed */
+}
+
+section>.start-button:hover {
+    background: cyan;
+    color: yellow;
+    box-shadow: 0px 0px 15px cyan;
 }
 
 h1:hover,
