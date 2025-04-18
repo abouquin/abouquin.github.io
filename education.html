@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,25 +9,39 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script defer src="script.js"></script>
 </head>
+
 <body>
     <canvas id="bg"></canvas>
     <header>
         <h1>Education and Outreach</h1>
         <p>Dedicated to making astrophysics accessible to everyone.</p>
     </header>
-    
+    <nav class="navbar">
+        <div class="nav-container">
+            <!-- <div class="nav-logo">AYKB Page</div> -->
+            <button class="hamburger" id="hamburger">&#9776;</button>
+
+            <ul class="nav-links" id="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Me</a></li>
+                <li><a href="research.html">Research</a></li>
+                <li><a href="education.html" class="active">Education</a></li>
+            </ul>
+        </div>
+    </nav>
     <section>
         <h2>Cosmic Zoom</h2>
         <p>Scroll to the edge of the observable universe</p>
         <button class="start-button">Start</button>
     </section>
-    
+
     <section>
         <h2>Other work</h2>
         <p>Details about other projects.</p>
     </section>
-    
+
     <button class="back-button">&#8592; Back to Home</button>
-    
+
 </body>
+
 </html>

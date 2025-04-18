@@ -178,3 +178,12 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 });
 
+// Hamburger menu for mobile
+const hamburger = document.getElementById('hamburger');
+const navLinks = document.getElementById('nav-links');
+const navbar = document.querySelector('.navbar');
+
+hamburger.addEventListener('click', () => {
+  navLinks.classList.toggle('show');
+  navbar.classList.toggle('show-bg');
+});
