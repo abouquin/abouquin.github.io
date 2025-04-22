@@ -176,6 +176,12 @@ document.addEventListener("DOMContentLoaded", () => {
             window.location.href = "cosmiczoom.html";
         });
     }
+    const startGameButton = document.querySelector(".startgame-button");
+    if (startGameButton) {
+        startGameButton.addEventListener("click", function () {
+            window.location.href = "games/flipzone.html";
+        });
+    }
 });
 
 // Hamburger menu for mobile
