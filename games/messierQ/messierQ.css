@@ -1,0 +1,125 @@
+body {
+    background-color: #000000;
+    font-family: Arial, sans-serif;
+    color: #dfdfdf;
+}
+
+h1 {
+    text-align: center;
+    color: #285f96;
+}
+
+#game-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+}
+
+#game-container p {
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+#game-container p span {
+    font-weight: bold;
+    color: #e74c3c;
+}
+
+#game-container p span#score {
+    color: #2ecc71;
+}
+
+#imagedisplay {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+#imagedisplay img {
+    width: 50%;
+    height: auto;
+    margin: 0 auto;
+    border: 1px solid #000;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.visible {
+    display: block;
+}
+
+#inputnumber {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+#inputnumber input {
+    width: 50px;
+    height: 50px;
+    font-size: 20px;
+    text-align: center;
+    border: 1px solid #3498db;
+    border-radius: 5px;
+}
+
+#inputnumber input:focus {
+    outline: none;
+    border-color: #2980b9;
+}
+
+#inputnumber input:disabled {
+    background-color: #ecf0f1;
+    cursor: not-allowed;
+}
+
+#numpad {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+#start-game button {
+    width: 100px;
+    height: 50px;
+    font-size: 20px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#start-game button:hover {
+    background-color: #2980b9;
+}
+
+#start-game button:active {
+    background-color: #1abc9c;
+}
+
+.numpad-button {
+    width: 50px;
+    height: 50px;
+    margin: 5px;
+    font-size: 20px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0eae4e;
+}
+
+button:active {
+    background-color: #b5e21e;
+}

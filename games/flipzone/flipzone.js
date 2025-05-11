@@ -47,10 +47,10 @@ cardValues.forEach(data => {
 });
 
 // Load sounds
-const flipSound = new Audio('./sounds/flip-sound.mp3');
-const matchSound = new Audio('./sounds/match-sound.mp3');
-const clearedSound = new Audio('./sounds/cleared-sound.mp3');
-const restartSound = new Audio('./sounds/restart-sound.mp3');
+const flipSound = new Audio('../sounds/flip-sound.mp3');
+const matchSound = new Audio('../sounds/match-sound.mp3');
+const clearedSound = new Audio('../sounds/cleared-sound.mp3');
+const restartSound = new Audio('../sounds/restart-sound.mp3');
 
 
 

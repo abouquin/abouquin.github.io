@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="messierQ.css">
+    <title>MessierQ</title>
+</head>
+<body>
+    <div id="game-container">
+        <h1>MessierQ</h1>
+        <p>Test your knowledge of the Messier objects!</p>
+        <button id="start-game">Start Game</button>
+        <div id="game">
+            <div id="imagedisplay">
+                <img id="image" class="hidden" src="images/M1.png" alt="Messier Object" />
+            </div>
+            <div id="inputnumber" class="hidden">
+                <label for="input">Enter the Messier number:</label>
+                <input type="text" id="input" />
+                <button id="submit">Submit</button>
+            </div>
+            <div id="numpad" class="hidden">
+                <table>
+                    <tr>
+                        <td><button class="numpad-button">1</button></td>
+                        <td><button class="numpad-button">2</button></td>
+                        <td><button class="numpad-button">3</button></td>
+                        <td><button class="numpad-button" id="delete">Del</button></td>
+                    </tr>
+                    <tr>
+                        <td><button class="numpad-button">4</button></td>
+                        <td><button class="numpad-button">5</button></td>
+                        <td><button class="numpad-button">6</button></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td><button class="numpad-button">7</button></td>
+                        <td><button class="numpad-button">8</button></td>
+                        <td><button class="numpad-button">9</button></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td><button class="numpad-button">0</button></td>
+                        <td></td>
+                        <td><button class="numpad-button" id="enter">Enter</button></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div id="scoreboard" class="hidden">
+            <h2>Scoreboard</h2>
+            <ul id="score-list"></ul>
+        </div>
+        <button id="home">🏠 Home</button>
+    <script src="messierQ.js"></script>
+</body>
+</html>
