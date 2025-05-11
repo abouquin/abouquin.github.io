@@ -179,7 +179,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const startGameButton = document.querySelector(".startgame-button");
     if (startGameButton) {
         startGameButton.addEventListener("click", function () {
-            window.location.href = "games/flipzone.html";
+            window.location.href = "games/flipzone/flipzone.html";
         });
     }
 });
