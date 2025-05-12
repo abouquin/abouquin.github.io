@@ -30,6 +30,11 @@ h1 {
     color: #2ecc71;
 }
 
+.button-row {
+    display: flex;
+    gap: 10px; /* optional, for spacing */
+}
+
 #imagedisplay {
     display: flex;
     justify-content: center;

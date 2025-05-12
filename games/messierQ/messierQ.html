@@ -10,7 +10,11 @@
     <div id="game-container">
         <h1>MessierQ</h1>
         <p>Test your knowledge of the Messier objects!</p>
-        <button id="start-game">Start Game</button>
+        <div class="button-row">
+            <button id="home">🏠 Home</button>
+            <button id="start-game">Start Game</button>
+            <button id="restart" class="hidden">🔄 Restart</button>
+        </div>
         <div id="game">
             <div id="imagedisplay">
                 <img id="image" class="hidden" src="images/M1.png" alt="Messier Object" />
@@ -53,7 +57,6 @@
             <h2>Scoreboard</h2>
             <ul id="score-list"></ul>
         </div>
-        <button id="home">🏠 Home</button>
     <script src="messierQ.js"></script>
 </body>
 </html>
