@@ -47,14 +47,19 @@ body.portrait #feedback {
 }
 
 body.portrait #inputnumber {
-    display: flex; /* Align label and input inline */
-    flex-direction: row; /* Inline in portrait */
-    align-items: center; /* Center vertically */
-    gap: 10px; /* Space between label and input */
+    display: flex;
+    /* Align label and input inline */
+    flex-direction: row;
+    /* Inline in portrait */
+    align-items: center;
+    /* Center vertically */
+    gap: 10px;
+    /* Space between label and input */
 }
 
 body.portrait #inputnumber label {
-    margin-right: 10px; /* Optional: Space between label and input */
+    margin-right: 10px;
+    /* Optional: Space between label and input */
 }
 
 body.portrait #inputnumber input {
@@ -64,11 +69,13 @@ body.portrait #inputnumber input {
     text-align: center;
     border: 1px solid #3498db;
     border-radius: 5px;
-    margin-top: 0; /* Remove margin in inline layout */
+    margin-top: 0;
+    /* Remove margin in inline layout */
 }
 
 body.landscape #inputnumber {
-    display: flex; /* Stack vertically in landscape (default behavior) */
+    display: flex;
+    /* Stack vertically in landscape (default behavior) */
     flex-direction: column;
     align-items: center;
     gap: 8px;
@@ -127,6 +134,51 @@ p {
     color: #dfdfdf;
     margin: 0;
     padding: 0;
+}
+
+#info-container {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    justify-content: center;
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+#info-button {
+    background: none;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    padding: 0;
+    margin: 0;
+    color: #3498db;
+}
+
+#info-popup {
+    position: fixed;
+    top: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(37, 37, 37, 0.95);
+    border: 1px solid #ccc;
+    padding: 15px;
+    width: 100%;
+    max-width: 480px;
+    z-index: 1000;
+    border-radius: 8px;
+    font-size: 14px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    text-align: left;
+}
+
+#info-popup.hidden {
+    display: none;
+}
+
+#info-popup a {
+    color: #1e90ff;
+    text-decoration: underline;
 }
 
 h2 {
@@ -192,6 +244,30 @@ h2 {
 
 #zoom-controls button:hover {
     background-color: #555;
+}
+
+#hint-popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(51, 51, 51, 0.85);
+    color: #fff;
+    padding: 20px 25px;
+    border-radius: 12px;
+    z-index: 1000;
+    max-width: 80%;
+    text-align: center;
+    font-size: 16px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+#hint-popup.hidden {
+    display: none;
+}
+
+#hint-popup::backdrop {
+    background: rgba(0, 0, 0, 0.5);
 }
 
 .hidden {
@@ -378,9 +454,17 @@ h2 {
     margin-top: 0px;
 }
 
+#numpad td {
+    width: 62px;
+    /* Fixed width for each cell */
+    text-align: center;
+    /* Center the content inside each cell */
+}
+
 .numpad-button {
-    width: 50px;
-    height: 50px;
+    width: 100%;
+    /* Make the button fill the full width of the cell */
+    height: 60px;
     margin: 5px;
     font-size: 20px;
     background-color: #3498db;
@@ -388,6 +472,7 @@ h2 {
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    box-sizing: border-box;
 }
 
 button:hover {

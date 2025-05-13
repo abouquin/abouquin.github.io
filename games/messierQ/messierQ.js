@@ -266,6 +266,68 @@ document.getElementById("reset-zoom").addEventListener("click", () => {
     applyZoom();
 });
 
+// Hint functionality
+// Load hints from JSON file
+let hintsData = {};
+
+fetch('messier.json')
+  .then(response => {
+    if (!response.ok) throw new Error('Failed to load hints.json');
+    return response.json();
+  })
+  .then(data => {
+    hintsData = data.data; // Store the hints under the 'data' key
+    console.log("Hints loaded:", hintsData);
+  })
+  .catch(error => {
+    console.error('Error loading hints:', error);
+  });
+
+document.getElementById("hint-button").addEventListener("click", (e) => {
+    e.stopPropagation(); // Prevent the global click handler from running
+    if (!currentImageNumber || !hintsData[`M${currentImageNumber}`]) return;
+
+    const hint = hintsData[`M${currentImageNumber}`];
+    const hintContent = `
+        <strong>HINT</strong><br><br>
+        <strong>${hint.name}</strong><br>
+        NGC: ${hint.NGC}<br>
+        Type: ${hint.type}<br>
+        Constellation: ${hint.constellation}<br>
+        Magnitude: ${hint.magnitude}<br>
+        Size: ${hint.size}<br>
+        Viewing Season: ${hint.viewingSeason}<br>
+        Viewing Difficulty: ${hint.viewingDifficulty}
+    `;
+
+    const popup = document.getElementById("hint-popup");
+    document.getElementById("hint-content").innerHTML = hintContent;
+    popup.classList.remove("hidden");
+});
+
+// Close hint popup when clicking outside
+document.addEventListener("click", function (e) {
+    const popup = document.getElementById("hint-popup");
+    if (!popup.classList.contains("hidden")) {
+        popup.classList.add("hidden");
+    }
+});
+
+// Info button functionality
+const infoButton = document.getElementById("info-button");
+const infoPopup = document.getElementById("info-popup");
+
+infoButton.addEventListener("click", (e) => {
+  e.stopPropagation();
+  infoPopup.classList.remove("hidden");
+});
+
+document.addEventListener("click", (e) => {
+  if (!infoPopup.classList.contains("hidden")) {
+    infoPopup.classList.add("hidden");
+  }
+});
+
 // Confetti animation
 const confettiCanvas = document.getElementById('confetti-canvas');
 const cCtx = confettiCanvas.getContext('2d');

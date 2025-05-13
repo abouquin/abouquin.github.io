@@ -15,13 +15,21 @@
             <div class="topbar-left">
                 <button id="home">🏠 Home</button>
             </div>
-            <h1>MessierQ (v1.0)</h1>
+            <h1>MessierQ (v1.1)</h1>
             <div class="topbar-right">
                 <button id="start-game">Start Game</button>
                 <button id="restart" class="hidden">🔄 Restart</button>
             </div>
         </div>
-        <p>Test your knowledge of the Messier objects!</p>
+        <div id="info-container">
+            <p>Test your knowledge of the Messier objects!</p>
+            <button id="info-button" title="More info">ℹ️</button>
+        </div>
+        <div id="info-popup" class="hidden">
+            The images are obtained from the colored DSS2 survey via Aladin Lite. All images share the same field of
+            view: 2.255° × 1.482°.<br><br>
+            Hints are sourced from the <a href="https://osricdienda.com" target="_blank">Messier API by Osric
+                Dienda</a>. </div>
         <div id="scoreboard" class="hidden">
             <h2>Scoreboard</h2>
             <p id="score"></p>
@@ -34,9 +42,10 @@
                         <img id="image" src="images/M1.jpg" alt="Messier Object" />
                     </div>
                     <div id="zoom-controls">
-                        <button id="zoom-in">+</button>
-                        <button id="zoom-out">−</button>
-                        <button id="reset-zoom">⤾</button>
+                        <button id="zoom-in" title="Zoom in">+</button>
+                        <button id="zoom-out" title="Zoom out">−</button>
+                        <button id="reset-zoom" title="Reset zoom">⤾</button>
+                        <button id="hint-button" title="Show hint">💡 Hint</button>
                     </div>
                 </div>
 
@@ -48,24 +57,28 @@
                     <div id="numpad">
                         <table>
                             <tr>
+                                <td></td>
                                 <td><button class="numpad-button">1</button></td>
                                 <td><button class="numpad-button">2</button></td>
                                 <td><button class="numpad-button">3</button></td>
                                 <td><button class="numpad-button" id="delete">Del</button></td>
                             </tr>
                             <tr>
+                                <td></td>
                                 <td><button class="numpad-button">4</button></td>
                                 <td><button class="numpad-button">5</button></td>
                                 <td><button class="numpad-button">6</button></td>
                                 <td></td>
                             </tr>
                             <tr>
+                                <td></td>
                                 <td><button class="numpad-button">7</button></td>
                                 <td><button class="numpad-button">8</button></td>
                                 <td><button class="numpad-button">9</button></td>
                                 <td></td>
                             </tr>
                             <tr>
+                                <td></td>
                                 <td></td>
                                 <td><button class="numpad-button">0</button></td>
                                 <td></td>
@@ -81,12 +94,15 @@
                     </div>
                 </div>
             </div>
+            <div id="hint-popup" class="hidden">
+                <div id="hint-content"></div>
+            </div>
 
         </div>
         <div id="finish-feedback" class="hidden"></div>
         <div id="thumbnails" class="hidden"></div>
     </div>
-    <script src="messierQ.js"></script>
+    <script src="messierQ.js" defer></script>
 </body>
 
 </html>
