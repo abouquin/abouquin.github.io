@@ -1,52 +1,197 @@
+* {
+    box-sizing: border-box;
+    /* Ensures padding is included in width */
+    margin: 0;
+}
+
+html {
+    overflow-y: scroll;
+}
+
 body {
     background-color: #000000;
     font-family: Arial, sans-serif;
     color: #dfdfdf;
+    margin: 0;
+    padding: 10px;
+    margin: 0;
+    /* Ensure no additional margins are applied */
+    overflow-x: hidden;
 }
 
-h1 {
+body.landscape #game-layout {
+    flex-direction: row;
+    align-items: flex-start;
+}
+
+body.portrait #game-layout {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+}
+
+body.portrait #image {
+    max-height: 40vh;
+}
+
+body.portrait #game-layout>* {
+    margin-bottom: 0;
+    /* prevent stacking margin */
+}
+
+body.portrait #scoreboard,
+body.portrait #feedback {
+    margin-top: 0px;
+    margin-bottom: 0;
+}
+
+body.portrait #inputnumber {
+    display: flex; /* Align label and input inline */
+    flex-direction: row; /* Inline in portrait */
+    align-items: center; /* Center vertically */
+    gap: 10px; /* Space between label and input */
+}
+
+body.portrait #inputnumber label {
+    margin-right: 10px; /* Optional: Space between label and input */
+}
+
+body.portrait #inputnumber input {
+    width: 60px;
+    height: 30px;
+    font-size: 20px;
     text-align: center;
-    color: #285f96;
+    border: 1px solid #3498db;
+    border-radius: 5px;
+    margin-top: 0; /* Remove margin in inline layout */
+}
+
+body.landscape #inputnumber {
+    display: flex; /* Stack vertically in landscape (default behavior) */
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+#confetti-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 10;
+    width: 100vw;
+    height: 100vh;
+}
+
+#topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 10px;
+    width: 100%;
+}
+
+.topbar-left,
+.topbar-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+#topbar h1 {
+    flex-grow: 1;
+    text-align: center;
+    margin: 0;
+    font-size: 1.8em;
+    color: #3498db;
+}
+
+#topbar button {
+    background-color: #444;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    margin: 0 10px;
+}
+
+#topbar button:hover {
+    background-color: #666;
+}
+
+p {
+    text-align: center;
+    color: #dfdfdf;
+    margin: 0;
+    padding: 0;
+}
+
+h2 {
+    text-align: center;
+    color: #dfdfdf;
+    margin: 0;
+    padding: 0;
 }
 
 #game-container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 20px;
+    margin-top: 5px;
 }
 
 #game-container p {
     font-size: 18px;
-    margin-bottom: 20px;
-}
-
-#game-container p span {
-    font-weight: bold;
-    color: #e74c3c;
-}
-
-#game-container p span#score {
-    color: #2ecc71;
-}
-
-.button-row {
-    display: flex;
-    gap: 10px; /* optional, for spacing */
+    margin-bottom: 0px;
 }
 
 #imagedisplay {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 20px;
+    margin-top: 10px;
+    gap: 12px;
+    max-width: 100%;
 }
 
-#imagedisplay img {
-    width: 50%;
-    height: auto;
-    margin: 0 auto;
-    border: 1px solid #000;
+#image-wrapper {
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#image {
+    max-width: 100%;
+    max-height: 100vh;
+    transform-origin: center center;
+    transition: transform 0.3s ease;
+}
+
+#zoom-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+#zoom-controls button {
+    padding: 6px 10px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    border: none;
+    background-color: #333;
+    color: white;
+    transition: background-color 0.2s;
+}
+
+#zoom-controls button:hover {
+    background-color: #555;
 }
 
 .hidden {
@@ -57,20 +202,163 @@ h1 {
     display: block;
 }
 
+#sidepanel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+}
+
+#game-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+#scoreboard {
+    display: flex;
+    flex-direction: column;
+    /* This stacks the children vertically */
+    justify-content: center;
+    align-items: center;
+    margin-top: 0px;
+    margin-bottom: 10px;
+}
+
+#score {
+    color: #2ecc71;
+    margin-top: 5px;
+}
+
+#feedback {
+    margin-top: 5px;
+    margin-bottom: 10px;
+    /* Ensures space below feedback */
+    font-size: 18px;
+}
+
+#thumbnails {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    gap: 8px;
+    margin-top: 20px;
+    visibility: visible;
+    /* Ensure it’s not hidden */
+    max-width: 100%;
+    /* Ensures grid doesn't overflow the container */
+    overflow-x: auto;
+}
+
+/* Thumbnail image styles */
+#thumbnails img {
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+}
+
+.thumbnail-container {
+    position: relative;
+    /* For the label positioning */
+}
+
+.thumbnail-container img {
+    width: 100%;
+    height: auto;
+    /* Maintain the aspect ratio */
+}
+
+.thumbnail-container .label {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 2px 5px;
+}
+
+/* Media Queries for smaller screens */
+@media (max-width: 768px) {
+    #game-container p {
+        font-size: 12px;
+        margin-bottom: 0px;
+    }
+
+    /* Adjust label font size for smaller screens */
+    .thumbnail-container .label {
+        font-size: 12px;
+        /* Adjust size for tablets or smaller screens */
+    }
+}
+
+@media (max-width: 480px) {
+    #game-container p {
+        font-size: 10px;
+        margin-bottom: 0px;
+    }
+
+    #image-wrapper {
+        max-height: 20vh;
+        /* Smaller vertical space for tiny screens */
+    }
+
+    .numpad-button {
+        font-size: 8px;
+        padding: 8px 10px;
+    }
+
+    p {
+        font-size: 8px;
+    }
+
+    /* Further reduce font size for very small screens (phones) */
+    .thumbnail-container .label {
+        font-size: 8px;
+    }
+
+    /* Adjust the thumbnail height for mobile screens */
+    .thumbnail-container {
+        height: 80px;
+        /* tighter height */
+    }
+
+    /* Reduce number of columns to fit smaller screens better */
+    #thumbnails {
+        grid-template-columns: repeat(5, 1fr);
+        gap: 4px;
+        /* reduce gap between grid items */
+    }
+
+    /* Ensure images fit neatly */
+    .thumbnail-container img {
+        height: 100%;
+        object-fit: cover;
+        display: block;
+    }
+}
+
 #inputnumber {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 20px;
+    margin-top: 0px;
 }
 
 #inputnumber input {
-    width: 50px;
-    height: 50px;
+    width: 60px;
+    height: 30px;
     font-size: 20px;
     text-align: center;
     border: 1px solid #3498db;
     border-radius: 5px;
+    margin-left: 10px;
+    pointer-events: none;
+    caret-color: transparent;
 }
 
 #inputnumber input:focus {
@@ -87,26 +375,7 @@ h1 {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    margin-top: 20px;
-}
-
-#start-game button {
-    width: 100px;
-    height: 50px;
-    font-size: 20px;
-    background-color: #3498db;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-#start-game button:hover {
-    background-color: #2980b9;
-}
-
-#start-game button:active {
-    background-color: #1abc9c;
+    margin-top: 0px;
 }
 
 .numpad-button {
@@ -127,4 +396,67 @@ button:hover {
 
 button:active {
     background-color: #b5e21e;
+}
+
+#enter {
+    min-width: 80px;
+    padding: 8px 14px;
+    font-weight: bold;
+}
+
+#nextbuttons {
+    display: flex;
+    justify-content: center;
+    /* optional: centers the buttons horizontally */
+    gap: 10px;
+    /* optional: adds spacing between the buttons */
+}
+
+#nextbuttons button {
+    display: inline-block;
+    /* just in case, though buttons are inline-block by default */
+}
+
+#finish {
+    background-color: #c0392b;
+    /* Red */
+    color: #fff;
+    font-size: 16px;
+    padding: 10px 20px;
+    margin: 5px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+#finish:hover {
+    background-color: #a93226;
+    transform: scale(1.05);
+}
+
+#finish:active {
+    transform: scale(0.98);
+}
+
+#next {
+    background-color: #285f96;
+    /* Blue */
+    color: #fff;
+    font-size: 16px;
+    padding: 10px 20px;
+    margin: 5px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+#next:hover {
+    background-color: #1d4f7a;
+    transform: scale(1.05);
+}
+
+#next:active {
+    transform: scale(0.98);
 }

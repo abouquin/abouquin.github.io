@@ -1,62 +1,92 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="messierQ.css">
     <title>MessierQ</title>
 </head>
-<body>
+
+<body id="body">
+    <canvas id="confetti-canvas"></canvas>
     <div id="game-container">
-        <h1>MessierQ</h1>
+        <div id="topbar">
+            <div class="topbar-left">
+                <button id="home">🏠 Home</button>
+            </div>
+            <h1>MessierQ (v1.0)</h1>
+            <div class="topbar-right">
+                <button id="start-game">Start Game</button>
+                <button id="restart" class="hidden">🔄 Restart</button>
+            </div>
+        </div>
         <p>Test your knowledge of the Messier objects!</p>
-        <div class="button-row">
-            <button id="home">🏠 Home</button>
-            <button id="start-game">Start Game</button>
-            <button id="restart" class="hidden">🔄 Restart</button>
-        </div>
-        <div id="game">
-            <div id="imagedisplay">
-                <img id="image" class="hidden" src="images/M1.png" alt="Messier Object" />
-            </div>
-            <div id="inputnumber" class="hidden">
-                <label for="input">Enter the Messier number:</label>
-                <input type="text" id="input" />
-                <button id="submit">Submit</button>
-            </div>
-            <div id="numpad" class="hidden">
-                <table>
-                    <tr>
-                        <td><button class="numpad-button">1</button></td>
-                        <td><button class="numpad-button">2</button></td>
-                        <td><button class="numpad-button">3</button></td>
-                        <td><button class="numpad-button" id="delete">Del</button></td>
-                    </tr>
-                    <tr>
-                        <td><button class="numpad-button">4</button></td>
-                        <td><button class="numpad-button">5</button></td>
-                        <td><button class="numpad-button">6</button></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td><button class="numpad-button">7</button></td>
-                        <td><button class="numpad-button">8</button></td>
-                        <td><button class="numpad-button">9</button></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td><button class="numpad-button">0</button></td>
-                        <td></td>
-                        <td><button class="numpad-button" id="enter">Enter</button></td>
-                    </tr>
-                </table>
-            </div>
-        </div>
         <div id="scoreboard" class="hidden">
             <h2>Scoreboard</h2>
-            <ul id="score-list"></ul>
+            <p id="score"></p>
         </div>
+
+        <div id="game" class="hidden">
+            <div id="game-layout">
+                <div id="imagedisplay">
+                    <div id="image-wrapper">
+                        <img id="image" src="images/M1.jpg" alt="Messier Object" />
+                    </div>
+                    <div id="zoom-controls">
+                        <button id="zoom-in">+</button>
+                        <button id="zoom-out">−</button>
+                        <button id="reset-zoom">⤾</button>
+                    </div>
+                </div>
+
+                <div id="sidepanel">
+                    <div id="inputnumber">
+                        <label for="input">Enter the Messier number (number between 1 and 110):</label>
+                        <input type="text" id="input" readonly />
+                    </div>
+                    <div id="numpad">
+                        <table>
+                            <tr>
+                                <td><button class="numpad-button">1</button></td>
+                                <td><button class="numpad-button">2</button></td>
+                                <td><button class="numpad-button">3</button></td>
+                                <td><button class="numpad-button" id="delete">Del</button></td>
+                            </tr>
+                            <tr>
+                                <td><button class="numpad-button">4</button></td>
+                                <td><button class="numpad-button">5</button></td>
+                                <td><button class="numpad-button">6</button></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td><button class="numpad-button">7</button></td>
+                                <td><button class="numpad-button">8</button></td>
+                                <td><button class="numpad-button">9</button></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td><button class="numpad-button">0</button></td>
+                                <td></td>
+                                <td><button class="numpad-button" id="enter">Enter</button></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <!-- Feedback Section -->
+                    <div id="feedback"></div>
+                    <div id="nextbuttons" class="hidden">
+                        <button id="finish">Finish</button>
+                        <button id="next">Next</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div id="finish-feedback" class="hidden"></div>
+        <div id="thumbnails" class="hidden"></div>
+    </div>
     <script src="messierQ.js"></script>
 </body>
+
 </html>

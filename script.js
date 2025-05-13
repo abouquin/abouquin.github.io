@@ -176,6 +176,12 @@ document.addEventListener("DOMContentLoaded", () => {
             window.location.href = "cosmiczoom.html";
         });
     }
+    const startMessierButton = document.querySelector(".startMessier-button");
+    if (startMessierButton) {
+        startMessierButton.addEventListener("click", function () {
+            window.location.href = "games/messierQ/messierQ.html";
+        });
+    }
     const startGameButton = document.querySelector(".startgame-button");
     if (startGameButton) {
         startGameButton.addEventListener("click", function () {
