@@ -84,8 +84,18 @@ for (let i = 0; i < numStars; i++) {
     const y = (Math.random() - 0.5) * 20;
     const z = distance * Math.sin(angle);
 
-    galaxyVertices.push(x, y, z);
-    galaxyColors.push(...starColors[Math.floor(Math.random() * starColors.length)]);
+    // Single point per star
+    // galaxyVertices.push(x, y, z);
+    // galaxyColors.push(...starColors[Math.floor(Math.random() * starColors.length)]);
+    //
+    // Line segment for star with slight length
+    const length = 3.0;
+    const dx = -Math.sin(angle); // unit tangent in x/z
+    const dy = 0;
+    const dz =  Math.cos(angle);
+    galaxyVertices.push(x, y, z, x + dx * length, y + dy * length, z + dz * length);
+    const color = starColors[Math.floor(Math.random() * starColors.length)];
+    galaxyColors.push(...color, ...color);
 }
 
 galaxyGeometry.setAttribute('position', new THREE.Float32BufferAttribute(galaxyVertices, 3));
@@ -112,7 +122,11 @@ const galaxyMaterial = new THREE.ShaderMaterial({
     transparent: true
 });
 
-const galaxy = new THREE.Points(galaxyGeometry, galaxyMaterial);
+// Render as points or lines
+// const galaxy = new THREE.Points(galaxyGeometry, galaxyMaterial);
+//
+// Using LineSegments for a more dynamic look
+const galaxy = new THREE.LineSegments(galaxyGeometry,new THREE.LineBasicMaterial({ vertexColors: true }));
 scene.add(galaxy);
 
 // Handle resizing for mobile
