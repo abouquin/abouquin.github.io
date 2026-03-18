@@ -327,10 +327,10 @@ function loadHiScore() {
     return bestSeconds;
 }
 
-function updateHiScoreIfNeeded() {
+function updateHiScoreIfNeeded(elapsedMs) {
     if (!startTime) return;
 
-    const elapsedSeconds = Math.floor((Date.now() - startTime) / 1000);
+    const elapsedSeconds = Math.floor(elapsedMs / 1000);
     const saved = localStorage.getItem(getHiScoreKey());
     const bestSeconds = saved === null ? null : Number(saved);
 
@@ -889,8 +889,10 @@ function updateSelectionFromPoint(clientX, clientY) {
 function maybeFinishGame() {
     const allMainWordsFound = foundWords.size === activeWords.length;
     if (allMainWordsFound && bonusSolved) {
+        const elapsedMs = Date.now() - startTime;
         stopTimer();
-        updateHiScoreIfNeeded();
+        timerEl.textContent = formatElapsed(elapsedMs);
+        updateHiScoreIfNeeded(elapsedMs);
         statusEl.textContent = `Puzzle cleared in ${timerEl.textContent}`;
         showPerfectFinishOverlay(timerEl.textContent);
     } else if (allMainWordsFound) {
