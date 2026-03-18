@@ -1062,47 +1062,56 @@ function hidePerfectFinishOverlay() {
     finishSparklesEl.innerHTML = "";
 }
 
-function playFoundSound() {
-    if (!soundEnabled) return;
-    const sfx = new Audio("audio/決定ボタンを押す53.mp3");
-    sfx.play().catch(() => { });
-}
-
-function playAllWordsFoundSound() {
-    if (!soundEnabled) return;
-    const sfx = new Audio("audio/決定ボタンを押す8.mp3");
-    sfx.play().catch(() => { });
-}
-
-function playBonusFoundSound() {
-    if (!soundEnabled) return;
-    const sfx = new Audio("audio/成功音.mp3");
-    sfx.play().catch(() => { });
-}
-
-function playBonusWrongSound() {
-    if (!soundEnabled) return;
-    const sfx = new Audio("audio/クイズ不正解1.mp3");
-    sfx.play().catch(() => { });
-}
-
-function playToggleSound() {
-    if (!soundEnabled) return;
-    const sfx = new Audio("audio/決定ボタンを押す44.mp3");
-    sfx.play().catch(() => { });
-}
-
-function playNewGameSound() {
-    if (!soundEnabled) return;
-    const sfx = new Audio("audio/決定ボタンを押す37.mp3");
-    sfx.play().catch(() => { });
-}
-
 const soundToggleBtn = document.getElementById("soundToggleBtn");
 const soundIcon = document.getElementById("soundIcon");
 
 const SOUND_ENABLED_KEY = "wordsearch_sound_enabled";
 let soundEnabled = true;
+
+const sounds = {
+    found: new Audio("audio/決定ボタンを押す53.mp3"),
+    allWordsFound: new Audio("audio/決定ボタンを押す8.mp3"),
+    bonusFound: new Audio("audio/成功音.mp3"),
+    bonusWrong: new Audio("audio/クイズ不正解1.mp3"),
+    toggle: new Audio("audio/決定ボタンを押す44.mp3"),
+    newGame: new Audio("audio/決定ボタンを押す37.mp3")
+};
+
+Object.values(sounds).forEach((audio) => {
+    audio.preload = "auto";
+});
+
+function playSound(audio) {
+    if (!soundEnabled) return;
+    audio.currentTime = 0;
+    audio.play().catch((err) => {
+        console.error("Sound playback failed:", err);
+    });
+}
+
+function playFoundSound() {
+    playSound(sounds.found);
+}
+
+function playAllWordsFoundSound() {
+    playSound(sounds.allWordsFound);
+}
+
+function playBonusFoundSound() {
+    playSound(sounds.bonusFound);
+}
+
+function playBonusWrongSound() {
+    playSound(sounds.bonusWrong);
+}
+
+function playToggleSound() {
+    playSound(sounds.toggle);
+}
+
+function playNewGameSound() {
+    playSound(sounds.newGame);
+}
 
 function loadSoundSetting() {
     const saved = localStorage.getItem(SOUND_ENABLED_KEY);
