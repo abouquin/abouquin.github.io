@@ -526,6 +526,10 @@ button {
 
     #status {
         font-size: 0.9rem;
+        white-space: normal;
+        overflow: visible;
+        text-overflow: clip;
+        overflow-wrap: break-word;
     }
 }
 
@@ -554,6 +558,10 @@ button {
 
     #status {
         font-size: 0.7rem;
+        white-space: normal;
+        overflow: visible;
+        text-overflow: clip;
+        overflow-wrap: break-word;
     }
 }
 
