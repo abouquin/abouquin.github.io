@@ -80,6 +80,9 @@ function toggleSound() {
     updateSoundButton();
 }
 
+const menuToggleBtn = document.getElementById("menuToggleBtn");
+const controlsEl = document.querySelector(".controls");
+
 const wordListEl = document.getElementById("wordList");
 const statusEl = document.getElementById("status");
 const newPuzzleBtn = document.getElementById("newPuzzleBtn");
@@ -96,15 +99,10 @@ function getHiScoreKey() {
     return `wordsearch_best_time_seconds_${currentLevel}`;
 }
 
+
 const finishOverlayEl = document.getElementById("finishOverlay");
 const finishSparklesEl = document.getElementById("finishSparkles");
 const finishTimeEl = document.getElementById("finishTime");
-
-rulesBtn.addEventListener("click", () => {
-    playToggleSound();
-    infoPanelEl.classList.toggle("hidden");
-    sidebarEl.classList.toggle("rules-hidden");
-});
 
 const meaningsBtn = document.getElementById("meaningsBtn");
 const meaningPanelEl = document.getElementById("meaningPanel");
@@ -175,18 +173,12 @@ async function fetchMeaning(word) {
     }
 }
 
-meaningsBtn.addEventListener("click", () => {
-    playToggleSound();
-    meaningsVisible = !meaningsVisible;
-    meaningPanelEl.classList.toggle("hidden", !meaningsVisible);
-    sidebarEl.classList.toggle("meaning-hidden", !meaningsVisible);
-});
-
 const SIZE = 12;
 const levelButtons = document.querySelectorAll(".level-btn");
 const levelDisplay = document.getElementById("levelDisplay");
 
 let currentLevel = "normal";
+const LEVEL_KEY = "wordsearch_level";
 let MIN_WORD_LEN = getMinWordLen();
 let MAX_WORD_LEN = getMaxWordLen();
 
@@ -214,6 +206,7 @@ levelButtons.forEach((btn) => {
         btn.setAttribute("aria-pressed", "true");
 
         currentLevel = btn.dataset.level;
+        localStorage.setItem(LEVEL_KEY, currentLevel);
         MIN_WORD_LEN = getMinWordLen();
         MAX_WORD_LEN = getMaxWordLen();
 
@@ -227,6 +220,25 @@ levelButtons.forEach((btn) => {
 
 function capitalizeLevel(level) {
     return level.charAt(0).toUpperCase() + level.slice(1);
+}
+
+function loadSavedLevel() {
+    const savedLevel = localStorage.getItem(LEVEL_KEY);
+
+    if (savedLevel === "easy" || savedLevel === "normal" || savedLevel === "hard") {
+        currentLevel = savedLevel;
+    }
+
+    MIN_WORD_LEN = getMinWordLen();
+    MAX_WORD_LEN = getMaxWordLen();
+
+    levelDisplay.textContent = `Level: ${capitalizeLevel(currentLevel)}`;
+
+    levelButtons.forEach((btn) => {
+        const active = btn.dataset.level === currentLevel;
+        btn.classList.toggle("active", active);
+        btn.setAttribute("aria-pressed", active ? "true" : "false");
+    });
 }
 
 const CANDIDATE_SAMPLE_SIZE = 1000;
@@ -984,6 +996,39 @@ function attachEvents() {
         }
     });
 
+    menuToggleBtn.addEventListener("click", (event) => {
+        event.stopPropagation();
+        playToggleSound();
+        controlsEl.classList.toggle("open");
+    });
+
+    themeToggleBtn.addEventListener("click", () => {
+        playToggleSound();
+        const isDark = document.body.classList.contains("dark-mode");
+        setTheme(isDark ? "light" : "dark");
+    });
+
+    rulesBtn.addEventListener("click", () => {
+        playToggleSound();
+        infoPanelEl.classList.toggle("hidden");
+        sidebarEl.classList.toggle("rules-hidden");
+    });
+
+    meaningsBtn.addEventListener("click", () => {
+        playToggleSound();
+        meaningsVisible = !meaningsVisible;
+        meaningPanelEl.classList.toggle("hidden", !meaningsVisible);
+        sidebarEl.classList.toggle("meaning-hidden", !meaningsVisible);
+    });
+
+    controlsEl.addEventListener("click", (event) => {
+        event.stopPropagation();
+    });
+
+    document.addEventListener("click", () => {
+        controlsEl.classList.remove("open");
+    });
+
     gridEl.addEventListener("pointerdown", event => {
         if (areAllMainWordsFound()) return;
 
@@ -1078,6 +1123,7 @@ function generatePuzzle() {
 
 async function init() {
     try {
+        loadSavedLevel();
         await loadDictionary();
         attachEvents();
         loadHiScore();
@@ -1187,17 +1233,3 @@ if (savedTheme === "dark") {
 } else {
     setTheme("light");
 }
-
-themeToggleBtn.addEventListener("click", () => {
-    playToggleSound();
-    const isDark = document.body.classList.contains("dark-mode");
-    setTheme(isDark ? "light" : "dark");
-});
-
-const menuToggleBtn = document.getElementById("menuToggleBtn");
-const controlsEl = document.querySelector(".controls");
-
-menuToggleBtn.addEventListener("click", () => {
-    playToggleSound();
-    controlsEl.classList.toggle("open");
-});
