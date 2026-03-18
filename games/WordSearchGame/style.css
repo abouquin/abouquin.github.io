@@ -620,8 +620,8 @@ button {
     color: var(--text);
 }
 
-.bonus-feedback {
-    margin: 0.6rem 0 0 0;
+.bonus-panel .bonus-feedback {
+    margin: 0.3rem 0 0 0;
     font-weight: 600;
     min-height: 1.2em;
 }
