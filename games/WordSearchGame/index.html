@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <title>Word Search</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+    <main class="app">
+        <header class="topbar">
+            <div class="title-group">
+                <div class="title-text">
+                    <h1>Word Search</h1>
+                    <p class="byline">by AYKB</p>
+                </div>
+                <button id="newPuzzleBtn" class="topbar-btn" type="button">New Puzzle</button>
+            </div>
+
+            <button id="menuToggleBtn" class="icon-btn menu-toggle" type="button" aria-label="Open menu">
+                <img src="icons/bars-3.svg" alt="Menu">
+            </button>
+
+            <div class="controls">
+                <div class="level-control" role="group" aria-label="Choose level">
+                    <span class="level-label">Level:</span>
+
+                    <div class="level-buttons">
+                        <button type="button" class="level-btn" data-level="easy">Easy</button>
+                        <button type="button" class="level-btn active" data-level="normal">Normal</button>
+                        <button type="button" class="level-btn" data-level="hard">Hard</button>
+                    </div>
+                </div>
+                <!-- <button id="resetSelectionBtn" type="button">Reset Selection</button> -->
+                <button id="themeToggleBtn" class="icon-btn" aria-label="Toggle dark mode">
+                    <img id="themeIcon" src="icons/moon.svg" alt="Dark mode">
+                </button>
+                <button id="rulesBtn" type="button">Toggle Rules</button>
+                <button id="meaningsBtn" type="button">Toggle Meanings</button>
+            </div>
+        </header>
+
+        <section class="game-layout">
+            <section class="board-panel">
+                <div class="board-header">
+                    <p id="status">Loading puzzle...</p>
+                    <p id="timer">00:00</p>
+                    <button id="soundToggleBtn" class="sound-toggle" type="button" aria-label="Toggle sound"
+                        title="Sound on">
+                        <img id="soundIcon" src="icons/speaker-wave.svg" alt="Sound on">
+                    </button>
+                </div>
+
+
+                <!-- Grid gets built by JS -->
+                <div id="grid" class="grid" aria-label="Word search puzzle" role="grid"></div>
+
+                <div id="board-footer" class="board-footer">
+                    <p id="levelDisplay" class="level-display">Level: Normal</p>
+
+                    <div class="hiscore-group">
+                        <p id="hiscore">Best time: --:--</p>
+
+                        <button id="resetHiScoreBtn" class="icon-toggle" type="button" aria-label="Reset best time"
+                            title="Reset best time">
+                            <img src="icons/arrow-path.svg" alt="Reset best time">
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <aside class="sidebar rules-hidden">
+                <section class="info-panel hidden">
+                    <h2>Rules</h2>
+                    <p>Words appear in straight lines only.</p>
+                    <p>They may run in any direction.</p>
+                    <p>No angled paths are allowed.</p>
+                    <p>Read the remaining letters in order to form the bonus word.</p>
+                </section>
+                <section class="wordbank-panel">
+                    <h2>Find These Words</h2>
+                    <ul id="wordList" class="word-list"></ul>
+                </section>
+                <section class="meaning-panel hidden" id="meaningPanel">
+                    <h2>Meanings</h2>
+                    <div id="meaningContent" class="meaning-content">
+                        Click a word to see its meaning.
+                    </div>
+                </section>
+            </aside>
+        </section>
+        <section class="bonus-panel">
+            <h2>Bonus Word</h2>
+            <p>Use the remaining letters to discover the bonus word.</p>
+            <div class="bonus-controls">
+                <input id="bonusInput" type="text" autocomplete="off" spellcheck="false"
+                    placeholder="Enter bonus word" />
+                <button id="bonusSubmitBtn" class="topbar-btn" type="button">Submit Bonus</button>
+            </div>
+            <p id="bonusFeedback" class="bonus-feedback"></p>
+        </section>
+    </main>
+
+    <div id="finishOverlay" class="finish-overlay hidden" aria-hidden="true">
+        <div id="finishSparkles" class="finish-sparkles"></div>
+
+        <div class="finish-badge">
+            <div class="finish-title">Perfect Finish</div>
+            <div id="finishTime" class="finish-time">Clear time: 00:00</div>
+        </div>
+    </div>
+
+    <div id="resetHiScoreModal" class="modal-overlay hidden" aria-hidden="true">
+        <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="resetHiScoreTitle">
+            <h2 id="resetHiScoreTitle">Reset best time?</h2>
+            <p>Your saved best time (for all levels) will be deleted.</p>
+
+            <div class="modal-actions">
+                <button id="cancelResetHiScoreBtn" type="button">No</button>
+                <button id="confirmResetHiScoreBtn" type="button" class="danger-btn">Reset</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
