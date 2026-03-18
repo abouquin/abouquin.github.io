@@ -524,12 +524,34 @@ button {
         padding: 0.8rem;
     }
 
+    .board-header {
+        grid-template-columns: 1fr auto;
+        grid-template-areas:
+            "status status"
+            "timer sound";
+        align-items: start;
+        gap: 0.5rem;
+    }
+
     #status {
-        font-size: 0.9rem;
+        grid-area: status;
+        justify-self: start;
+        min-width: 0;
         white-space: normal;
         overflow: visible;
         text-overflow: clip;
         overflow-wrap: break-word;
+    }
+
+    #timer {
+        grid-area: timer;
+        justify-self: start;
+        white-space: nowrap;
+    }
+
+    #soundToggleBtn {
+        grid-area: sound;
+        justify-self: end;
     }
 }
 
@@ -558,10 +580,6 @@ button {
 
     #status {
         font-size: 0.7rem;
-        white-space: normal;
-        overflow: visible;
-        text-overflow: clip;
-        overflow-wrap: break-word;
     }
 }
 
