@@ -1189,6 +1189,7 @@ if (savedTheme === "dark") {
 }
 
 themeToggleBtn.addEventListener("click", () => {
+    playToggleSound();
     const isDark = document.body.classList.contains("dark-mode");
     setTheme(isDark ? "light" : "dark");
 });
@@ -1197,5 +1198,6 @@ const menuToggleBtn = document.getElementById("menuToggleBtn");
 const controlsEl = document.querySelector(".controls");
 
 menuToggleBtn.addEventListener("click", () => {
+    playToggleSound();
     controlsEl.classList.toggle("open");
 });
