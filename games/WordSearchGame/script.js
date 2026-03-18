@@ -1,4 +1,85 @@
 const gridEl = document.getElementById("grid");
+
+
+const soundToggleBtn = document.getElementById("soundToggleBtn");
+const soundIcon = document.getElementById("soundIcon");
+
+const SOUND_ENABLED_KEY = "wordsearch_sound_enabled";
+let soundEnabled = true;
+
+const sounds = {
+    found: new Audio("audio/決定ボタンを押す53.mp3"),
+    allWordsFound: new Audio("audio/決定ボタンを押す8.mp3"),
+    bonusFound: new Audio("audio/成功音.mp3"),
+    bonusWrong: new Audio("audio/クイズ不正解1.mp3"),
+    toggle: new Audio("audio/決定ボタンを押す44.mp3"),
+    newGame: new Audio("audio/決定ボタンを押す37.mp3")
+};
+
+Object.values(sounds).forEach((audio) => {
+    audio.preload = "auto";
+});
+
+function playSound(audio) {
+    if (!soundEnabled) return;
+    audio.currentTime = 0;
+    audio.play().catch((err) => {
+        console.error("Sound playback failed:", err);
+    });
+}
+
+function playFoundSound() {
+    playSound(sounds.found);
+}
+
+function playAllWordsFoundSound() {
+    playSound(sounds.allWordsFound);
+}
+
+function playBonusFoundSound() {
+    playSound(sounds.bonusFound);
+}
+
+function playBonusWrongSound() {
+    playSound(sounds.bonusWrong);
+}
+
+function playToggleSound() {
+    playSound(sounds.toggle);
+}
+
+function playNewGameSound() {
+    playSound(sounds.newGame);
+}
+
+function loadSoundSetting() {
+    const saved = localStorage.getItem(SOUND_ENABLED_KEY);
+
+    if (saved === null) {
+        soundEnabled = true;
+    } else {
+        soundEnabled = saved === "true";
+    }
+
+    updateSoundButton();
+}
+
+function updateSoundButton() {
+    soundIcon.src = soundEnabled
+        ? "icons/speaker-wave.svg"
+        : "icons/speaker-x-mark.svg";
+
+    soundIcon.alt = soundEnabled ? "Sound on" : "Sound off";
+    soundToggleBtn.title = soundEnabled ? "Sound on" : "Sound off";
+    soundToggleBtn.setAttribute("aria-label", soundEnabled ? "Turn sound off" : "Turn sound on");
+}
+
+function toggleSound() {
+    soundEnabled = !soundEnabled;
+    localStorage.setItem(SOUND_ENABLED_KEY, String(soundEnabled));
+    updateSoundButton();
+}
+
 const wordListEl = document.getElementById("wordList");
 const statusEl = document.getElementById("status");
 const newPuzzleBtn = document.getElementById("newPuzzleBtn");
@@ -138,7 +219,7 @@ levelButtons.forEach((btn) => {
 
         levelDisplay.textContent = `Level: ${capitalizeLevel(currentLevel)}`;
         loadHiScore();
-        
+
         await loadDictionary();
         generatePuzzle();
     });
@@ -966,7 +1047,7 @@ function attachEvents() {
 
 function generatePuzzle() {
     hidePerfectFinishOverlay();
-    
+
     foundWordStyles = new Map();
     foundWords = new Set();
     bonusSolved = false;
@@ -1060,85 +1141,6 @@ function hidePerfectFinishOverlay() {
     finishOverlayEl.classList.add("hidden");
     finishOverlayEl.setAttribute("aria-hidden", "true");
     finishSparklesEl.innerHTML = "";
-}
-
-const soundToggleBtn = document.getElementById("soundToggleBtn");
-const soundIcon = document.getElementById("soundIcon");
-
-const SOUND_ENABLED_KEY = "wordsearch_sound_enabled";
-let soundEnabled = true;
-
-const sounds = {
-    found: new Audio("audio/決定ボタンを押す53.mp3"),
-    allWordsFound: new Audio("audio/決定ボタンを押す8.mp3"),
-    bonusFound: new Audio("audio/成功音.mp3"),
-    bonusWrong: new Audio("audio/クイズ不正解1.mp3"),
-    toggle: new Audio("audio/決定ボタンを押す44.mp3"),
-    newGame: new Audio("audio/決定ボタンを押す37.mp3")
-};
-
-Object.values(sounds).forEach((audio) => {
-    audio.preload = "auto";
-});
-
-function playSound(audio) {
-    if (!soundEnabled) return;
-    audio.currentTime = 0;
-    audio.play().catch((err) => {
-        console.error("Sound playback failed:", err);
-    });
-}
-
-function playFoundSound() {
-    playSound(sounds.found);
-}
-
-function playAllWordsFoundSound() {
-    playSound(sounds.allWordsFound);
-}
-
-function playBonusFoundSound() {
-    playSound(sounds.bonusFound);
-}
-
-function playBonusWrongSound() {
-    playSound(sounds.bonusWrong);
-}
-
-function playToggleSound() {
-    playSound(sounds.toggle);
-}
-
-function playNewGameSound() {
-    playSound(sounds.newGame);
-}
-
-function loadSoundSetting() {
-    const saved = localStorage.getItem(SOUND_ENABLED_KEY);
-
-    if (saved === null) {
-        soundEnabled = true;
-    } else {
-        soundEnabled = saved === "true";
-    }
-
-    updateSoundButton();
-}
-
-function updateSoundButton() {
-    soundIcon.src = soundEnabled
-        ? "icons/speaker-wave.svg"
-        : "icons/speaker-x-mark.svg";
-
-    soundIcon.alt = soundEnabled ? "Sound on" : "Sound off";
-    soundToggleBtn.title = soundEnabled ? "Sound on" : "Sound off";
-    soundToggleBtn.setAttribute("aria-label", soundEnabled ? "Turn sound off" : "Turn sound on");
-}
-
-function toggleSound() {
-    soundEnabled = !soundEnabled;
-    localStorage.setItem(SOUND_ENABLED_KEY, String(soundEnabled));
-    updateSoundButton();
 }
 
 const resetHiScoreBtn = document.getElementById("resetHiScoreBtn");
