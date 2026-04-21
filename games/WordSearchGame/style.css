@@ -81,12 +81,41 @@ body {
     margin: 0;
     background: var(--bg);
     color: var(--text);
+    position: relative;
 }
 
 .app {
     max-width: 1200px;
     margin: 0 auto;
     padding: 1rem;
+    position: relative;
+    z-index: 1;
+}
+
+body.astro-mode {
+    background: linear-gradient(180deg, color-mix(in srgb, var(--bg) 88%, var(--accent) 12%) 0%, var(--bg) 100%);
+}
+
+body.dark-mode.astro-mode {
+    background: linear-gradient(180deg, color-mix(in srgb, var(--bg) 82%, var(--accent) 18%) 0%, var(--bg) 100%);
+}
+
+body.astro-mode .topbar,
+body.astro-mode .board-panel,
+body.astro-mode .wordbank-panel,
+body.astro-mode .info-panel,
+body.astro-mode .meaning-panel,
+body.astro-mode .bonus-panel {
+    background: color-mix(in srgb, var(--panel) 94%, var(--accent) 6%);
+}
+
+body.dark-mode.astro-mode .topbar,
+body.dark-mode.astro-mode .board-panel,
+body.dark-mode.astro-mode .wordbank-panel,
+body.dark-mode.astro-mode .info-panel,
+body.dark-mode.astro-mode .meaning-panel,
+body.dark-mode.astro-mode .bonus-panel {
+    background: color-mix(in srgb, var(--panel) 90%, var(--accent) 10%);
 }
 
 .topbar {
@@ -114,6 +143,35 @@ body {
     align-items: flex-end;
     gap: 0.15rem;
     min-width: 0;
+}
+
+.site-title {
+    position: relative;
+    display: inline-block;
+    margin: 0;
+}
+
+.astro-word {
+    position: absolute;
+    top: -0.55em;
+    left: calc(-1.1em + 5px);
+    font-size: 0.42em;
+    line-height: 1;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    color: var(--accent);
+    transform: rotate(-12deg);
+    transform-origin: center;
+    white-space: nowrap;
+    pointer-events: none;
+}
+
+.astro-word {
+    display: none;
+}
+
+.astro-word.show {
+    display: inline-block;
 }
 
 .byline {
@@ -149,6 +207,7 @@ body {
     border-color: var(--accent);
 }
 
+.mode-control,
 .level-control {
     display: flex;
     align-items: center;
@@ -156,16 +215,19 @@ body {
     flex-wrap: wrap;
 }
 
+.mode-label,
 .level-label {
     font-size: 0.8rem;
     color: var(--text);
 }
 
+.mode-buttons,
 .level-buttons {
     display: flex;
     gap: 0.2rem;
 }
 
+.mode-btn,
 .level-btn {
     border: 1px solid var(--border);
     background: var(--panel);
@@ -184,10 +246,12 @@ body {
     justify-content: center;
 }
 
+.mode-btn:hover,
 .level-btn:hover {
     border-color: var(--accent);
 }
 
+.mode-btn.active,
 .level-btn.active {
     border-color: var(--accent);
     background: var(--accent-soft);
@@ -305,6 +369,14 @@ button {
     margin-left: auto;
 }
 
+.footer-meta {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.mode-display,
 .level-display,
 #hiscore {
     margin: 0;
@@ -424,36 +496,38 @@ button {
     min-height: 0;
 }
 
-@media (max-width: 1020px) {
+.info-panel,
+.meaning-panel {
+    position: relative;
+    padding-right: 2.75rem;
+}
 
-    html,
-    body {
-        height: auto;
-        overflow-y: auto;
-        overflow-x: hidden;
-    }
+.panel-close-btn {
+    position: absolute;
+    top: 0.6rem;
+    right: 0.6rem;
+    width: 1.75rem;
+    height: 1.75rem;
+    border: none;
+    background: transparent;
+    padding: 0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
-    .app,
-    .game-layout,
-    .board-panel,
-    .sidebar {
-        height: auto;
-        max-height: none;
-        min-height: 0;
-    }
+.panel-close-btn img {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
 
-    .app {
-        padding-top: 5.5rem;
-    }
+.panel-close-btn:hover {
+    opacity: 0.7;
+}
 
-    .game-layout {
-        grid-template-columns: 1fr;
-    }
-
-    .sidebar {
-        width: 100%;
-    }
-
+@media (max-width: 1200px) {
     .topbar {
         position: fixed;
         top: 0;
@@ -469,6 +543,10 @@ button {
         flex-wrap: nowrap;
     }
 
+    .app {
+        padding-top: 5.5rem;
+    }
+
     .title-group {
         min-width: 0;
         flex: 1 1 auto;
@@ -478,6 +556,7 @@ button {
         display: inline-flex;
         flex: 0 0 auto;
         align-self: auto;
+        transform: translateX(-20px);
     }
 
     .controls {
@@ -502,6 +581,39 @@ button {
     }
 
     .controls button {
+        width: 100%;
+    }
+}
+
+@media (max-width: 1024px) {
+
+    html,
+    body {
+        height: auto;
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+
+    .menu-toggle {
+        transform: translateX(-3px);
+    }
+
+    .app,
+    .game-layout,
+    .board-panel,
+    .sidebar {
+        height: auto;
+        max-height: none;
+        min-height: 0;
+    }
+
+
+    .game-layout {
+        grid-template-columns: 1fr;
+    }
+
+
+    .sidebar {
         width: 100%;
     }
 }

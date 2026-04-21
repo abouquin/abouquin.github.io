@@ -12,8 +12,11 @@
     <main class="app">
         <header class="topbar">
             <div class="title-group">
-                <div class="title-text">
-                    <h1>Word Search</h1>
+                <div class="title-text" id="titleText">
+                    <h1 class="site-title" id="siteTitle">
+                        <span class="astro-word" id="astroWord">Astro</span>
+                        <span class="main-title">Word Search</span>
+                    </h1>
                     <p class="byline">by AYKB</p>
                 </div>
                 <button id="newPuzzleBtn" class="topbar-btn" type="button">New Puzzle</button>
@@ -24,13 +27,24 @@
             </button>
 
             <div class="controls">
+                <div class="mode-control" role="group" aria-label="Choose mode">
+                    <span class="mode-label">Mode:</span>
+
+                    <div class="mode-buttons">
+                        <button type="button" class="mode-btn active" data-mode="normal"
+                            aria-pressed="true">Normal</button>
+                        <button type="button" class="mode-btn" data-mode="astro" aria-pressed="false">Astro</button>
+                    </div>
+                </div>
+
                 <div class="level-control" role="group" aria-label="Choose level">
                     <span class="level-label">Level:</span>
 
                     <div class="level-buttons">
-                        <button type="button" class="level-btn" data-level="easy">Easy</button>
-                        <button type="button" class="level-btn active" data-level="normal">Normal</button>
-                        <button type="button" class="level-btn" data-level="hard">Hard</button>
+                        <button type="button" class="level-btn" data-level="easy" aria-pressed="false">Easy</button>
+                        <button type="button" class="level-btn active" data-level="normal"
+                            aria-pressed="true">Normal</button>
+                        <button type="button" class="level-btn" data-level="hard" aria-pressed="false">Hard</button>
                     </div>
                 </div>
                 <!-- <button id="resetSelectionBtn" type="button">Reset Selection</button> -->
@@ -58,7 +72,10 @@
                 <div id="grid" class="grid" aria-label="Word search puzzle" role="grid"></div>
 
                 <div id="board-footer" class="board-footer">
-                    <p id="levelDisplay" class="level-display">Level: Normal</p>
+                    <div class="footer-meta">
+                        <p id="modeDisplay" class="mode-display">Mode: Normal</p>
+                        <p id="levelDisplay" class="level-display">Level: Normal</p>
+                    </div>
 
                     <div class="hiscore-group">
                         <p id="hiscore">Best time: --:--</p>
@@ -73,6 +90,9 @@
 
             <aside class="sidebar rules-hidden">
                 <section class="info-panel hidden">
+                    <button class="icon-btn panel-close-btn" id="rulesCloseBtn" type="button" aria-label="Close rules">
+                        <img src="icons/x-mark.svg" alt="">
+                    </button>
                     <h2>Rules</h2>
                     <p>Words appear in straight lines only.</p>
                     <p>They may run in any direction.</p>
@@ -83,7 +103,12 @@
                     <h2>Find These Words</h2>
                     <ul id="wordList" class="word-list"></ul>
                 </section>
+
                 <section class="meaning-panel hidden" id="meaningPanel">
+                    <button class="icon-btn panel-close-btn" id="meaningsCloseBtn" type="button"
+                        aria-label="Close meanings">
+                        <img src="icons/x-mark.svg" alt="">
+                    </button>
                     <h2>Meanings</h2>
                     <div id="meaningContent" class="meaning-content">
                         Click a word to see its meaning.

@@ -1,5 +1,18 @@
 const gridEl = document.getElementById("grid");
 
+const astroWord = document.getElementById("astroWord");
+
+function updateModeUI() {
+    modeButtons.forEach((btn) => {
+        const isActive = btn.dataset.mode === currentMode;
+        btn.classList.toggle("active", isActive);
+        btn.setAttribute("aria-pressed", isActive ? "true" : "false");
+    });
+
+    modeDisplay.textContent = `Mode: ${capitalizeText(currentMode)}`;
+    astroWord.classList.toggle("show", currentMode === "astro");
+    document.body.classList.toggle("astro-mode", currentMode === "astro");
+}
 
 const soundToggleBtn = document.getElementById("soundToggleBtn");
 const soundIcon = document.getElementById("soundIcon");
@@ -80,6 +93,10 @@ function toggleSound() {
     updateSoundButton();
 }
 
+const RULES_VISIBLE_KEY = "wordsearch_rules_visible";
+const MEANINGS_VISIBLE_KEY = "wordsearch_meanings_visible";
+
+
 const menuToggleBtn = document.getElementById("menuToggleBtn");
 const controlsEl = document.querySelector(".controls");
 
@@ -91,12 +108,13 @@ const bonusInput = document.getElementById("bonusInput");
 const bonusSubmitBtn = document.getElementById("bonusSubmitBtn");
 
 const rulesBtn = document.getElementById("rulesBtn");
+const rulesCloseBtn = document.getElementById("rulesCloseBtn");
 const infoPanelEl = document.querySelector(".info-panel");
 const sidebarEl = document.querySelector(".sidebar");
 
 const hiscoreEl = document.getElementById("hiscore");
 function getHiScoreKey() {
-    return `wordsearch_best_time_seconds_${currentLevel}`;
+    return `wordsearch_best_time_seconds_${currentMode}_${currentLevel}`;
 }
 
 
@@ -105,11 +123,71 @@ const finishSparklesEl = document.getElementById("finishSparkles");
 const finishTimeEl = document.getElementById("finishTime");
 
 const meaningsBtn = document.getElementById("meaningsBtn");
+const meaningsCloseBtn = document.getElementById("meaningsCloseBtn");
 const meaningPanelEl = document.getElementById("meaningPanel");
 const meaningContentEl = document.getElementById("meaningContent");
 
-let meaningsVisible = false;
+let rulesVisible = true;
+let meaningsVisible = true;
 sidebarEl.classList.add("meaning-hidden");
+
+function toggleRules() {
+    playToggleSound();
+    rulesVisible = !rulesVisible;
+    infoPanelEl.classList.toggle("hidden", !rulesVisible);
+    sidebarEl.classList.toggle("rules-hidden", !rulesVisible);
+
+    localStorage.setItem(RULES_VISIBLE_KEY, rulesVisible);
+}
+
+function toggleMeanings() {
+    playToggleSound();
+    meaningsVisible = !meaningsVisible;
+    meaningPanelEl.classList.toggle("hidden", !meaningsVisible);
+    sidebarEl.classList.toggle("meaning-hidden", !meaningsVisible);
+
+    localStorage.setItem(MEANINGS_VISIBLE_KEY, meaningsVisible);
+}
+
+function loadRulesSetting() {
+    const saved = localStorage.getItem(RULES_VISIBLE_KEY);
+
+    if (saved === null) {
+        rulesVisible = true;
+    } else {
+        rulesVisible = saved === "true";
+    }
+
+    infoPanelEl.classList.toggle("hidden", !rulesVisible);
+    sidebarEl.classList.toggle("rules-hidden", !rulesVisible);
+}
+
+function loadMeaningsSetting() {
+    const saved = localStorage.getItem(MEANINGS_VISIBLE_KEY);
+
+    if (saved === null) {
+        meaningsVisible = true;
+    } else {
+        meaningsVisible = saved === "true";
+    }
+
+    meaningPanelEl.classList.toggle("hidden", !meaningsVisible);
+    sidebarEl.classList.toggle("meaning-hidden", !meaningsVisible);
+}
+
+loadRulesSetting();
+loadMeaningsSetting();
+
+function getGoogleSearchLink(word) {
+    const suffix = currentMode === "astro" ? " meaning astronomy" : " meaning";
+    const query = encodeURIComponent(`${word}${suffix}`);
+    return `https://www.google.com/search?q=${query}`;
+}
+
+function getNoDefinitionHtml(word) {
+    const url = getGoogleSearchLink(word);
+    return `No definition found. <a href="${url}" target="_blank" rel="noopener noreferrer">Search on Google</a>.`;
+}
 
 let wordMeanings = new Map();
 
@@ -120,7 +198,7 @@ function formatDefinitions(data, word) {
     if (!entry) {
         return word[0] === word[0].toUpperCase()
             ? "A name, nationality, region, or other proper term."
-            : "No definition found.";
+            : getNoDefinitionHtml(word);
     }
 
     const meanings = (entry.meanings || []).map(meaning => ({
@@ -134,7 +212,7 @@ function formatDefinitions(data, word) {
     if (meanings.length === 0) {
         return word[0] === word[0].toUpperCase()
             ? "A name, nationality, region, or other proper term."
-            : "No definition found.";
+            : getNoDefinitionHtml(word);
     }
 
     return meanings.map(meaning => {
@@ -156,7 +234,7 @@ async function fetchMeaning(word) {
         );
 
         if (!response.ok) {
-            const fallback = "No definition found.";
+            const fallback = getNoDefinitionHtml(word);
             wordMeanings.set(word, fallback);
             return fallback;
         }
@@ -167,11 +245,16 @@ async function fetchMeaning(word) {
         wordMeanings.set(word, definition);
         return definition;
     } catch {
-        const fallback = "Failed to load definition.";
+        const fallback = `Failed to load definition. <a href="${getGoogleSearchLink(word)}" target="_blank" rel="noopener noreferrer">Search on Google</a>.`;
         wordMeanings.set(word, fallback);
         return fallback;
     }
 }
+
+const modeButtons = document.querySelectorAll(".mode-btn");
+const modeDisplay = document.getElementById("modeDisplay");
+let currentMode = "astro";
+const MODE_KEY = "wordsearch_mode";
 
 const SIZE = 12;
 const levelButtons = document.querySelectorAll(".level-btn");
@@ -210,7 +293,7 @@ levelButtons.forEach((btn) => {
         MIN_WORD_LEN = getMinWordLen();
         MAX_WORD_LEN = getMaxWordLen();
 
-        levelDisplay.textContent = `Level: ${capitalizeLevel(currentLevel)}`;
+        levelDisplay.textContent = `Level: ${capitalizeText(currentLevel)}`;
         loadHiScore();
 
         await loadDictionary();
@@ -218,8 +301,29 @@ levelButtons.forEach((btn) => {
     });
 });
 
-function capitalizeLevel(level) {
-    return level.charAt(0).toUpperCase() + level.slice(1);
+modeButtons.forEach((btn) => {
+    btn.addEventListener("click", async () => {
+        modeButtons.forEach((b) => {
+            b.classList.remove("active");
+            b.setAttribute("aria-pressed", "false");
+        });
+
+        btn.classList.add("active");
+        btn.setAttribute("aria-pressed", "true");
+
+        currentMode = btn.dataset.mode;
+        localStorage.setItem(MODE_KEY, currentMode);
+
+        updateModeUI();
+        loadHiScore();
+
+        await loadDictionary();
+        generatePuzzle();
+    });
+});
+
+function capitalizeText(text) {
+    return text.charAt(0).toUpperCase() + text.slice(1);
 }
 
 function loadSavedLevel() {
@@ -232,10 +336,27 @@ function loadSavedLevel() {
     MIN_WORD_LEN = getMinWordLen();
     MAX_WORD_LEN = getMaxWordLen();
 
-    levelDisplay.textContent = `Level: ${capitalizeLevel(currentLevel)}`;
+    levelDisplay.textContent = `Level: ${capitalizeText(currentLevel)}`;
 
     levelButtons.forEach((btn) => {
         const active = btn.dataset.level === currentLevel;
+        btn.classList.toggle("active", active);
+        btn.setAttribute("aria-pressed", active ? "true" : "false");
+    });
+}
+
+function loadSavedMode() {
+    const savedMode = localStorage.getItem(MODE_KEY);
+
+    if (savedMode === "normal" || savedMode === "astro") {
+        currentMode = savedMode;
+    }
+
+    modeDisplay.textContent = `Mode: ${capitalizeText(currentMode)}`;
+    astroWord.classList.toggle("show", currentMode === "astro");
+
+    modeButtons.forEach((btn) => {
+        const active = btn.dataset.mode === currentMode;
         btn.classList.toggle("active", active);
         btn.setAttribute("aria-pressed", active ? "true" : "false");
     });
@@ -248,8 +369,9 @@ const MIN_DIAGONAL_WORDS = 6;
 
 // const DICT_URL =
 //     "https://cdn.jsdelivr.net/gh/dwyl/english-words@master/words_alpha.txt";
-const DICT_URL =
+const NORMAL_DICT_URL =
     "https://raw.githubusercontent.com/MichaelWehar/Public-Domain-Word-Lists/master/5000-more-common.txt";
+const ASTRO_DICT_URL = "astro-words.txt";
 
 const DIRECTIONS = [
     [1, 0], [-1, 0], [0, 1], [0, -1],
@@ -445,7 +567,9 @@ function passesDictionaryFilter(word) {
 async function loadDictionary() {
     statusEl.textContent = "Loading dictionary...";
 
-    const response = await fetch(DICT_URL, { cache: "force-cache" });
+    const dictUrl = currentMode === "astro" ? ASTRO_DICT_URL : NORMAL_DICT_URL;
+
+    const response = await fetch(dictUrl, { cache: "force-cache" });
     if (!response.ok) {
         throw new Error(`Dictionary fetch failed: HTTP ${response.status}`);
     }
@@ -1010,18 +1134,11 @@ function attachEvents() {
         setTheme(isDark ? "light" : "dark");
     });
 
-    rulesBtn.addEventListener("click", () => {
-        playToggleSound();
-        infoPanelEl.classList.toggle("hidden");
-        sidebarEl.classList.toggle("rules-hidden");
-    });
+    rulesBtn.addEventListener("click", toggleRules);
+    meaningsBtn.addEventListener("click", toggleMeanings);
 
-    meaningsBtn.addEventListener("click", () => {
-        playToggleSound();
-        meaningsVisible = !meaningsVisible;
-        meaningPanelEl.classList.toggle("hidden", !meaningsVisible);
-        sidebarEl.classList.toggle("meaning-hidden", !meaningsVisible);
-    });
+    rulesCloseBtn.addEventListener("click", toggleRules);
+    meaningsCloseBtn.addEventListener("click", toggleMeanings);
 
     controlsEl.addEventListener("click", (event) => {
         event.stopPropagation();
@@ -1125,6 +1242,7 @@ function generatePuzzle() {
 
 async function init() {
     try {
+        loadSavedMode();
         loadSavedLevel();
         await loadDictionary();
         attachEvents();

@@ -4,11 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AYKB Page</title>
-    <link rel="stylesheet" href="../styles.css">
-    <link rel="icon" type="image/png" href="favicon.png" sizes="128x128">
-    <link rel="manifest" href="/manifest.json">
-    <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
+    <title>Contact</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="favicon.png" sizes="128x128">
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-W4P18QQTFG"></script>
     <script>
@@ -17,8 +15,9 @@
         gtag('js', new Date());
         gtag('config', 'G-W4P18QQTFG');
     </script>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script defer src="../script.js"></script>
+    <script defer src="script.js"></script>
 </head>
 
 <body>
@@ -36,10 +35,8 @@
     </div>
 
     <header>
-        <h1>Alexandre Yuichiro Kléber Bouquin, PhD</h1>
-        <p>Astrophysics beyond borders</p>
-        <p>Astrophysicist | Researcher | Educator</p>
-        <p>Latest update: March 16, 2026</p>
+        <h1>About me</h1>
+        <p>Dedicated to making astrophysics accessible to everyone.</p>
     </header>
     <nav class="navbar">
         <div class="nav-container">
@@ -47,11 +44,11 @@
             <button class="hamburger" id="hamburger">&#9776;</button>
 
             <ul class="nav-links" id="nav-links">
-                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="index.html">Home</a></li>
                 <li><a href="about.html">About Me</a></li>
                 <li><a href="research.html">Research</a></li>
                 <li><a href="outreach.html">Outreach</a></li>
-                <li><a href="contact.html">Contact</a></li>
+                <li><a href="contact.html" class="active">Contact</a></li>
             </ul>
             <!-- <div class="bmc-wrap">
                 <a href="https://buymeacoffee.com/aykb" target="_blank" rel="noopener noreferrer" class="coffee-btn">
@@ -60,33 +57,26 @@
             </div> -->
         </div>
     </nav>
-    <section id="about" class="clickable-section" data-url="about.html">
-        <h2>About Me</h2>
-        <p>I'm a PhD astrophysicist and educator passionate about making astrophysics accessible across cultures and
-            languages.
-            <br />I promote curiosity, critical thinking, and a deeper understanding of the universe—because science is
-            for everyone.
-        </p>
-    </section>
-    <section id="research" class="clickable-section" data-url="research.html">
-        <h2>Research & Publications</h2>
-        <p>Explore my work in galaxy evolution and star formation.</p>
-    </section>
-
-    <section id="outreach" class="clickable-section" data-url="outreach.html">
-        <h2>Astronomy Education & Outreach</h2>
-        <p>Dedicated to making astrophysics accessible to everyone.</p>
+    <section class="table-section">
+        <h2>Contact Information</h2>
+        <div class="table-container">
+            <table>
+                <tr>
+                    <th>Method</th>
+                    <th>Details</th>
+                </tr>
+                <tr>
+                    <td>Email</td>
+                    <td>alex.bouquin [at] gmail.com</td>
+                </tr>
+            </table>
+        </div>
     </section>
 
-    <section id="contact">
-        <h2>Contact</h2>
-        <p>Find me on <a href="https://github.com/abouquin" target="_blank">GitHub</a>,
-            <a href="https://orcid.org/0000-0001-8285-4189" target="_blank">ORCID</a>, and
-            <a href="https://x.com/bouquina" target="_blank">X (Twitter)</a>
-            <br />or just send me an email:
-            <br /><br />alex.bouquin at gmail.com
-        </p>
+    <section class="table-section">
     </section>
+
+    <button class="back-button">&#8592; Back to Home</button>
 
     <footer class="footer">
         <p>© 2025-2026 Alexandre Y. K. Bouquin — Site • Designed and developed by Alexandre Y. K. Bouquin
@@ -103,6 +93,7 @@
         </p> -->
     </footer>
     <script type="module" src="./scriptanime.js"></script>
+
 
 </body>
 

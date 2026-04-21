@@ -190,6 +190,12 @@ document.addEventListener("DOMContentLoaded", () => {
             window.location.href = "cosmiczoom.html";
         });
     }
+    const startWordSearchButton = document.querySelector(".startWordSearch-button");
+    if (startWordSearchButton) {
+        startWordSearchButton.addEventListener("click", function () {
+            window.location.href = "games/WordSearchGame/index.html";
+        });
+    }
     const startMessierButton = document.querySelector(".startMessier-button");
     if (startMessierButton) {
         startMessierButton.addEventListener("click", function () {
@@ -208,8 +214,38 @@ document.addEventListener("DOMContentLoaded", () => {
 const hamburger = document.getElementById('hamburger');
 const navLinks = document.getElementById('nav-links');
 const navbar = document.querySelector('.navbar');
+const navContainer = document.querySelector('.nav-container');
 
-hamburger.addEventListener('click', () => {
-    navLinks.classList.toggle('show');
-    navbar.classList.toggle('show-bg');
+function closeMenu() {
+    navLinks.classList.remove('show');
+    navbar.classList.remove('show-bg');
+    hamburger.textContent = '☰';
+}
+
+function openMenu() {
+    navLinks.classList.add('show');
+    navbar.classList.add('show-bg');
+    hamburger.textContent = '✕';
+}
+
+hamburger.addEventListener('click', (e) => {
+    e.stopPropagation();
+
+    if (navLinks.classList.contains('show')) {
+        closeMenu();
+    } else {
+        openMenu();
+    }
+});
+
+document.addEventListener('click', (e) => {
+    if (!navContainer.contains(e.target)) {
+        closeMenu();
+    }
+});
+
+document.querySelectorAll('#nav-links a').forEach((link) => {
+    link.addEventListener('click', () => {
+        closeMenu();
+    });
 });
