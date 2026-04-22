@@ -1063,10 +1063,12 @@ function finishSelection() {
 }
 
 function submitBonusWord() {
+    if (bonusSolved) return;
+
     const guess = normalizeWord(bonusInput.value);
 
     if (!guess) {
-        playBonusWrongSound()
+        playBonusWrongSound();
         setBonusFeedback("Please enter a word.", false);
         statusEl.textContent = "Enter the bonus word";
         return;
@@ -1075,6 +1077,9 @@ function submitBonusWord() {
     if (guess === bonusWord) {
         bonusSolved = true;
         bonusInput.value = bonusWord;
+        bonusInput.disabled = true;
+        bonusSubmitBtn.disabled = true;
+
         playBonusFoundSound();
         setBonusFeedback("Correct bonus word.", true);
         maybeFinishGame();
@@ -1083,7 +1088,6 @@ function submitBonusWord() {
             statusEl.textContent = "Bonus word correct. Find the remaining words.";
         }
     } else {
-        bonusSolved = false;
         playBonusWrongSound();
         setBonusFeedback("Incorrect bonus word.", false);
         statusEl.textContent = "Incorrect bonus word";
@@ -1210,6 +1214,8 @@ function generatePuzzle() {
     bonusSolved = false;
     clearSelectedCells();
     bonusInput.value = "";
+    bonusInput.disabled = false;
+    bonusSubmitBtn.disabled = false;
     setBonusFeedback("", null);
 
     statusEl.textContent = "Generating puzzle...";
