@@ -352,14 +352,7 @@ function loadSavedMode() {
         currentMode = savedMode;
     }
 
-    modeDisplay.textContent = `Mode: ${capitalizeText(currentMode)}`;
-    astroWord.classList.toggle("show", currentMode === "astro");
-
-    modeButtons.forEach((btn) => {
-        const active = btn.dataset.mode === currentMode;
-        btn.classList.toggle("active", active);
-        btn.setAttribute("aria-pressed", active ? "true" : "false");
-    });
+    updateModeUI();
 }
 
 const CANDIDATE_SAMPLE_SIZE = 1000;
