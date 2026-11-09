@@ -457,6 +457,11 @@ h2:hover {
     cursor: pointer;
 }
 
+.events-section {
+    width: min(1100px, 92%);
+    margin: 3rem auto;
+}
+
 .games-section {
     width: min(1100px, 92%);
     margin: 3rem auto;

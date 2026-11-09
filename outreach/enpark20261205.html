@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Education and Outreach</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="icon" type="image/png" href="../favicon.png" sizes="128x128">
+    <link rel="manifest" href="../manifest.json">
+    <link rel="apple-touch-icon" href="../icons/apple-touch-icon.png">
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-W4P18QQTFG"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-W4P18QQTFG');
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script defer src="../script.js"></script>
+</head>
+
+<body>
+    <canvas id="bg"></canvas>
+    <div class="scanlines"></div>
+    <div class="svg-grid-bg">
+        <svg viewBox="0 0 100 100" preserveAspectRatio="none">
+            <rect width="100%" height="100%" fill="url(#grid)" />
+            <defs>
+                <pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse">
+                    <path d="M 10 0 L 0 0 0 10" stroke="red" stroke-width="0.5" fill="none" />
+                </pattern>
+            </defs>
+        </svg>
+    </div>
+
+    <header>
+        <h1>天文学特別講座</h1>
+        <p>えんぱーく・塩尻市市民交流センター</p>
+    </header>
+    <nav class="navbar">
+        <div class="nav-container">
+            <!-- <div class="nav-logo">AYKB Page</div> -->
+            <button class="hamburger" id="hamburger">&#9776;</button>
+
+            <ul class="nav-links" id="nav-links">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../about.html">About Me</a></li>
+                <li><a href="../research.html">Research</a></li>
+                <li><a href="../outreach.html" class="active">Outreach</a></li>
+                <li><a href="../contact.html">Contact</a></li>
+            </ul>
+            <!-- <div class="bmc-wrap">
+                <a href="https://buymeacoffee.com/aykb" target="_blank" rel="noopener noreferrer" class="coffee-btn">
+                    Buy Me a Coffee
+                </a>
+            </div> -->
+        </div>
+    </nav>
+    <section class="events-section">
+        <h2 class="events">Event</h2>
+
+        <div class="games-grid">
+            <article class="game-card">
+                <h3>「銀河は生きている」</h3>
+                <p class="game-desc"><a href="./poster6_SHIOJIRI_enpark_AF_GOOD.pdf" 
+                target="_blank">チラシ</a></p>
+                <p><a href="./poster6_SHIOJIRI_enpark_AF_GOOD.pdf" 
+                target="_blank"><img src="./thumbnail.jpg" /></a></p>
+            </article>
+            <article class="game-card">
+                <p>日時：2026年12月05日　土曜日</p>
+                <p>第1部：18:00 〜 19:30（初級者向け）</p>
+                <p>第2部：20:00 〜 21:30（中級者向け）</p>
+                <p>場所：えんぱーく・塩尻市市民交流センター・306号室</p>
+                <p>定員：18名／部</p>
+                <p>参加費：1000円／部</p>
+                <p>※以下の講演内容は、予告なく変更となる場合があります。あらかじめご了承ください。</p>
+            </article>
+        </div>
+        <div class="games-grid">
+            <article class="game-card">
+                <h3>第1部（初級者向け）：内容</h3>
+                <p>1. 銀河研究の歴史</p>
+                <p>2. 銀河の分類と多様性</p>
+                <p>3. 銀河の構成要素</p>
+                <p>4. 銀河の内部で起こる現象</p>
+                <p>5. 銀河の形成と進化</p>
+                <p>6. 遠方銀河から探る宇宙初期</p>
+            </article>
+            <article class="game-card">
+                <h3>第2部（中級者向け）：内容</h3>
+                <p>1. 銀河の光を調べる</p>
+                <p>2. 銀河の星々を調べる</p>
+                <p>3. 星の誕生</p>
+                <p>4. 銀河の回転とダークマター</p>
+                <p>5. 超大質量ブラックホール</p>
+                <p>6. 宇宙の膨張とダークエネルギー</p>
+            </article>
+
+        </div>            
+    </section>
+    <footer class="footer">
+        <p>© 2025-2026 Alexandre Y. K. Bouquin — Site • Designed and developed by Alexandre Y. K. Bouquin
+            <br />Powered by <a href="https://threejs.org/" target="_blank">three.js</a>,
+            <a href="https://animejs.com/" target="_blank">anime.js</a>, &amp;
+            <a href="https://github.com/abouquin" target="_blank">GitHub</a>
+        </p>
+        <!-- <br />
+        <p>This page accepts one-time voluntary support payments to help fund the maintenance and creation of content on
+            this website.
+            No physical goods are shipped.
+            No subscription is created.
+            For questions or mistaken payments, see: <a href="commercialdisclosure.html">Commercial Disclosure - 特定商取引法に基づく表記</a>
+        </p> -->
+    </footer>
+    <script type="module" src="../scriptanime.js"></script>
+</body>
+</html>
