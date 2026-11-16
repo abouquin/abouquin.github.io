@@ -8,7 +8,7 @@ import {
 } from './animejs/lib/anime.esm.js';
 
 console.log(document.querySelector('.svg-grid-bg'));
-
+console.log(document.querySelectorAll('.svg-grid-bg').length);
 animate('.svg-grid-bg', {
     // translateX: [-30, 30],
     translateY: [-10, 10],
